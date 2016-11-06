@@ -66,7 +66,7 @@ public class OnlineCheckPlayerService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.v("MyTag","service started!!!");
+        Log.d("MyTag","service started");
         thisPlayerPlaysWhite = intent.getBooleanExtra(COLOR, true);
         String gameId = intent.getStringExtra(GAME_ID);
 
@@ -116,13 +116,6 @@ public class OnlineCheckPlayerService extends Service {
         registerReceiver(this.receiver, intentFilter);
     }
 
-    public void unregisterMyReceiver() {
-        try {
-            unregisterReceiver(receiver);
-        } catch (IllegalArgumentException ignored) {
-        }
-    }
-
     class RunChecking implements Runnable {
 
         private int countLags;
@@ -146,7 +139,7 @@ public class OnlineCheckPlayerService extends Service {
                     stopAndIntent();
                 }
             }
-            unregisterMyReceiver();
+            unregisterReceiver(receiver);
             player1timestampDB.getRef().removeEventListener(player1timestampDB.getValueEventListener());
             player2timestampDB.getRef().removeEventListener(player2timestampDB.getValueEventListener());
             stopSelf();
@@ -177,7 +170,7 @@ public class OnlineCheckPlayerService extends Service {
 
     @Override
     public void onDestroy() {
-        Log.v("MyTag", "service destroyed !!! ");
+        Log.d("MyTag", "service destroyed");
         super.onDestroy();
     }
 

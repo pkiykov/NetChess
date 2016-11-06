@@ -21,7 +21,7 @@ import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.Map;
 
-import static com.pkiykov.netchess.AsyncTasks.Peer2PeerSockets.INET_ADRESS;
+import static com.pkiykov.netchess.async_tasks.Peer2PeerSockets.INET_ADRESS;
 import static com.pkiykov.netchess.fragments.Game.GAME_TYPE;
 import static com.pkiykov.netchess.fragments.Game.LAN_GAME;
 import static com.pkiykov.netchess.logic.Peer2Peer.USER_INFO;

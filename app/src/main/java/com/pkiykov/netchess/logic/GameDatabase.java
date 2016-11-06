@@ -5,15 +5,6 @@ import android.support.annotation.NonNull;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.pkiykov.netchess.GameActivity;
-import com.pkiykov.netchess.R;
-import com.pkiykov.netchess.fragments.Game;
-import com.pkiykov.netchess.others.FirebaseHelper;
-import com.pkiykov.netchess.pojo.Coordinates;
-import com.pkiykov.netchess.pojo.FinishedGame;
-import com.pkiykov.netchess.pojo.Player;
-import com.pkiykov.netchess.pojo.PlayerGameParams;
-import com.pkiykov.netchess.pojo.RunningGame;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -26,6 +17,15 @@ import com.google.firebase.database.ServerValue;
 import com.google.firebase.database.ValueEventListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.pkiykov.netchess.GameActivity;
+import com.pkiykov.netchess.R;
+import com.pkiykov.netchess.fragments.Game;
+import com.pkiykov.netchess.others.FirebaseHelper;
+import com.pkiykov.netchess.pojo.Coordinates;
+import com.pkiykov.netchess.pojo.FinishedGame;
+import com.pkiykov.netchess.pojo.Player;
+import com.pkiykov.netchess.pojo.PlayerGameParams;
+import com.pkiykov.netchess.pojo.RunningGame;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.NetworkPolicy;
 import com.squareup.picasso.Picasso;
@@ -102,38 +102,36 @@ public class GameDatabase {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                if (dataSnapshot.getValue() != null) {
-                    if (game.getRunningGame() != null) {
-                        if (dataSnapshot.getValue(RunningGame.class).getPlayer1() != null &&
-                                dataSnapshot.getValue(RunningGame.class).getPlayer2() != null) {
+                if (dataSnapshot.getValue() != null && game.getRunningGame() != null) {
+                    if (dataSnapshot.getValue(RunningGame.class).getPlayer1() != null &&
+                            dataSnapshot.getValue(RunningGame.class).getPlayer2() != null) {
 
-                            if ((game.getRunningGame().getPlayer1() == null ^ game.getRunningGame().getPlayer2() == null) && !opponentIsConnected) {
-                                opponentIsConnected = true;
-                                if (game.getRunningGame().isThisPlayerPlaysWhite()) {
-                                    game.getRunningGame().setPlayer2(dataSnapshot.getValue(RunningGame.class).getPlayer2());
-                                } else {
-                                    game.getRunningGame().setPlayer1(dataSnapshot.getValue(RunningGame.class).getPlayer1());
-                                }
-                                game.getGameStart().createPlayerJoinedDialog();
-                            } else if (dataSnapshot.getValue(RunningGame.class).getPlayer1().getPlayerGameParams() == null
-                                    && dataSnapshot.getValue(RunningGame.class).getPlayer2().getPlayerGameParams() == null
-                                    && game.getRunningGame().getStatus() == RunningGame.DRAW_BY_AGREEMENT) {
-                                game.getGameEnd().setGameHasBeenEnded(true);
-                                game.getGameEnd().finishService();
-                                game.getGameEnd().unbindService();
-                                removeDatabaseListenersForCurrentGame();
-                                game.getGameEnd().recordResult();
+                        if ((game.getRunningGame().getPlayer1() == null ^ game.getRunningGame().getPlayer2() == null) && !opponentIsConnected) {
+                            opponentIsConnected = true;
+                            if (game.getRunningGame().isThisPlayerPlaysWhite()) {
+                                game.getRunningGame().setPlayer2(dataSnapshot.getValue(RunningGame.class).getPlayer2());
+                            } else {
+                                game.getRunningGame().setPlayer1(dataSnapshot.getValue(RunningGame.class).getPlayer1());
                             }
-                        } else if ((dataSnapshot.getValue(RunningGame.class).getPlayer1() == null ^
-                                dataSnapshot.getValue(RunningGame.class).getPlayer2() == null) && (game.getRunningGame().getPlayer1() != null &&
-                                game.getRunningGame().getPlayer2() != null)) {
-                            if (game.getGameStart().getAcceptPlayerDialog() != null) {
-                                if (game.getGameStart().getAcceptPlayerDialog().isShowing()) {
-                                    game.getGameStart().getAcceptPlayerDialog().dismiss();
-                                }
-                            }
-                            game.getGameEnd().onOpponentDisconnect();
+                            game.getGameStart().createPlayerJoinedDialog();
+                        } else if (dataSnapshot.getValue(RunningGame.class).getPlayer1().getPlayerGameParams() == null
+                                && dataSnapshot.getValue(RunningGame.class).getPlayer2().getPlayerGameParams() == null
+                                && game.getRunningGame().getStatus() == RunningGame.DRAW_BY_AGREEMENT) {
+                            game.getGameEnd().setGameHasBeenEnded(true);
+                            game.getGameEnd().finishService();
+                            game.getGameEnd().unbindService();
+                            removeDatabaseListenersForCurrentGame();
+                            game.getGameEnd().recordResult();
                         }
+                    } else if ((dataSnapshot.getValue(RunningGame.class).getPlayer1() == null ^
+                            dataSnapshot.getValue(RunningGame.class).getPlayer2() == null) && (game.getRunningGame().getPlayer1() != null &&
+                            game.getRunningGame().getPlayer2() != null)) {
+                        if (game.getGameStart().getAcceptPlayerDialog() != null) {
+                            if (game.getGameStart().getAcceptPlayerDialog().isShowing()) {
+                                game.getGameStart().getAcceptPlayerDialog().dismiss();
+                            }
+                        }
+                        game.getGameEnd().onOpponentDisconnect();
                     }
                 }
             }
@@ -300,7 +298,6 @@ public class GameDatabase {
             }
         });
     }
-
 
 
     void recordGameResultToDB() {

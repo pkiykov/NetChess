@@ -10,6 +10,7 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
+import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.Map;
@@ -38,14 +39,14 @@ public class FileTransferService extends IntentService {
             Bundle bundle = intent.getExtras();
             String host = bundle.getString(EXTRAS_HOST_ADDRESS);
             Map map = (Map) bundle.getSerializable(ACTION_SEND_FILE);
-            Socket socket;
             DataOutputStream stream = null;
-                socket = new Socket();
+            Socket socket = new Socket();
             try {
                 if (map != null) {
                     Log.d("MyTag", "trying to connect to "+host+", + "+" to port "+port);
                     socket.connect((new InetSocketAddress(host, port)), SOCKET_TIMEOUT);
-                    stream = new DataOutputStream(socket.getOutputStream());
+                    OutputStream outputStream = socket.getOutputStream();
+                    stream = new DataOutputStream(outputStream);
                     stream.write(prepareBytesToSend(map));
                     stream.close();
 

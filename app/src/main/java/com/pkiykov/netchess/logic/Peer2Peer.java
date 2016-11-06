@@ -19,7 +19,7 @@ import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
-import com.pkiykov.netchess.AsyncTasks.Peer2PeerSockets;
+import com.pkiykov.netchess.async_tasks.Peer2PeerSockets;
 import com.pkiykov.netchess.GameActivity;
 import com.pkiykov.netchess.R;
 import com.pkiykov.netchess.fragments.Game;

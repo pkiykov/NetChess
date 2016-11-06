@@ -1,6 +1,5 @@
 package com.pkiykov.netchess.async_tasks;
 
-import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.os.AsyncTask;
@@ -33,7 +32,6 @@ public class OnDisconnect extends AsyncTask<Integer, Integer, String> {
     protected void onPreExecute() {
         super.onPreExecute();
         gameFragment = activity.getFragmentManager().findFragmentByTag(Game.class.getSimpleName());
-        @SuppressLint("InflateParams")
         RelativeLayout relativeLayout = (RelativeLayout) activity.getLayoutInflater().inflate(R.layout.dialog_disconnect_10sec,  null);
         disconnectDialog = new Dialog(activity);
         disconnectDialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -16,7 +16,7 @@ import com.pkiykov.netchess.fragments.PeerToPeerDevicesList;
 import com.pkiykov.netchess.fragments.RankList;
 import com.pkiykov.netchess.fragments.RankedGameSettings;
 import com.pkiykov.netchess.fragments.Registration;
-import com.pkiykov.netchess.AsyncTasks.OnDisconnect;
+import com.pkiykov.netchess.async_tasks.OnDisconnect;
 import com.pkiykov.netchess.fragments.UnrankedGameSettings;
 import com.pkiykov.netchess.others.NetworkUtil;
 
@@ -44,7 +44,7 @@ public class ConnectionStateChangeReceiver extends BroadcastReceiver {
                 } else {
                     String message = context.getString(R.string.this_disconnected);
                     String title = context.getString(R.string.connection_state_changed);
-                    activity.createNotification(context, message, title, 1237);
+                    activity.createNotification(context, message, title, 1);
                 }
                 if (backEntry.getName().equals(RankedGameSettings.class.getSimpleName())) {
                     currentFragment = activity.getFragmentManager().findFragmentByTag(RankedGameSettings.class.getSimpleName());
@@ -78,7 +78,8 @@ public class ConnectionStateChangeReceiver extends BroadcastReceiver {
                     if (f.getGameType() == Game.ONLINE_GAME ) {
                         if (onDisconnectTask == null) {
                             onDisconnectTask = new OnDisconnect(activity);
-                            onDisconnectTask.execute(10);
+                            final int SECONDS_10 = 10;
+                            onDisconnectTask.execute(SECONDS_10);
                             onDisconnectTask = null;
                         }
                     }else if (f.getGameType() == Game.LAN_GAME ){
