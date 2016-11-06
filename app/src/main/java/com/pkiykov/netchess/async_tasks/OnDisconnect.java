@@ -1,4 +1,4 @@
-package com.pkiykov.netchess.AsyncTasks;
+package com.pkiykov.netchess.async_tasks;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
