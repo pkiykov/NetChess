@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:layout_centerInParent="true"
+    android:background="@drawable/background"
+    tools:context="com.pkiykov.netchess.GameActivity">
+    <EditText
+        android:id="@+id/emailAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintEmail"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#80FFFFFF" />
+
+    <EditText
+        android:layout_marginTop="10dp"
+        android:id="@+id/passwordAuth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/hintPass"
+        android:inputType="textPassword"
+        android:textColorHint="#80FFFFFF" />
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/okAuth"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#50FFFFFF"
+        android:text="@string/ok"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="15dp"
+        android:layout_alignParentStart="true"/>
+    <Button
+        android:layout_marginEnd="15dp"
+        android:id="@+id/registration"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:background="#50FFFFFF"
+        android:text="@string/retistration"
+        android:textColor="#FFFFFF"
+        android:layout_marginTop="20dp"
+        android:layout_alignParentEnd="true"/>
+
+</RelativeLayout>
+
+
+</LinearLayout>

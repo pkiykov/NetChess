@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/pause"
+        android:maxHeight="0dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/background" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:paddingTop="10dp"
+            android:text="@string/choose_connection"
+            android:textAppearance="?android:attr/textAppearanceLarge"
+            android:textColor="#FFFFFF">
+
+        </TextView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
+            android:layout_below="@+id/textView1"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <ImageButton
+                android:id="@+id/bluetooth_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="?android:selectableItemBackground"
+                android:contentDescription="@string/bluetooth"
+                android:scaleType="fitCenter"
+                android:src="@drawable/bluetooth">
+
+            </ImageButton>
+
+            <ImageButton
+                android:id="@+id/wifi_button"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_weight="1"
+                android:adjustViewBounds="true"
+                android:background="?android:selectableItemBackground"
+                android:contentDescription="@string/wifi"
+                android:scaleType="fitCenter"
+                android:src="@drawable/wifi">
+
+            </ImageButton>
+        </LinearLayout>
+    </RelativeLayout>
+</FrameLayout>

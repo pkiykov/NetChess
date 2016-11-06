@@ -1,0 +1,102 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/registration"
+    android:orientation="vertical"
+    tools:context="com.pkiykov.netchess.fragments.Registration">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="top|center"
+        android:text="@string/welcome"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:textColor="#70FFFFFF"
+        android:textIsSelectable="false"
+        android:textStyle="italic"/>
+
+    <EditText
+        android:maxLength="20"
+        android:textStyle="italic"
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/hintName"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#80FFFFFF" />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:hint="@string/hintEmail"
+      android:textStyle="italic"
+        android:inputType="textEmailAddress"
+        android:textColorHint="#80FFFFFF" />
+
+    <EditText
+        android:id="@+id/password"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textStyle="italic"
+        android:hint="@string/hintPassword"
+        android:inputType="textPassword"
+        android:textColorHint="#80FFFFFF" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:layout_marginTop="20dp"
+        android:text="@string/birthdate"
+        android:layout_marginLeft="63dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="#FFFFFF" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    android:orientation="horizontal">
+
+    <DatePicker
+        android:id="@+id/date_picker"
+        style="@android:style/Widget.DatePicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+    </DatePicker>
+
+</LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/ok"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_gravity="start"
+            android:layout_marginBottom="5dp"
+            android:layout_marginStart="20dp"
+            android:background="@drawable/transparent_gradient"
+            android:text="@string/ok"
+            android:textColor="#FFFFFF" />
+
+        <Button
+
+            android:id="@+id/cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginEnd="20dp"
+            android:background="@drawable/transparent_gradient"
+            android:text="@string/cancel"
+            android:textColor="#FFFFFF" />
+    </RelativeLayout>
+
+</LinearLayout>

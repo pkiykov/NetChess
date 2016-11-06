@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <ListView
+        android:id="@+id/list_view_logs"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/button_layout">
+
+    </ListView>
+
+    <LinearLayout
+        android:id="@+id/button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentStart="true">
+        <ImageButton
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:contentDescription="@string/send_message"
+            android:id="@+id/send_message_button"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/send_message"
+            android:src="@drawable/send_message"
+            android:scaleType="centerInside"/>
+        <Button
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_weight="1"
+            android:id="@+id/close_logs_button"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/close_logs" />
+    </LinearLayout>
+
+</RelativeLayout>

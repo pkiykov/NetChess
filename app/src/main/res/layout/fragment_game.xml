@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/game_fragment"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/background"
+    tools:context="com.pkiykov.netchess.GameActivity">
+
+    <LinearLayout
+        android:id="@+id/player2_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/all_field"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:scaleType="centerInside"
+                android:id="@+id/player2_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/player_photo"
+                android:src="@drawable/empty_avatar" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/player2_name"
+                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/player2_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player2_time_control_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/player2_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/player2_kingIsChecked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/king_is_checked"
+                android:textColor="#F44336"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/sideToMove"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/sideToMove"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/all_field"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:id="@+id/field1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field7"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+
+        <LinearLayout
+            android:id="@+id/field8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:alignmentMode="alignBounds"
+            android:orientation="horizontal"
+            android:useDefaultMargins="false" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/player1_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/all_field"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:scaleType="centerInside"
+                android:id="@+id/player1_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackground"
+                android:contentDescription="@string/player_photo"
+                android:src="@drawable/empty_avatar" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="2"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:id="@+id/player1_name"
+                android:layout_height="0dp"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:textAlignment="center"/>
+
+            <TextView
+                android:layout_gravity="center"
+                android:id="@+id/player1_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="20dp"
+                android:layout_marginBottom="10dp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/player1_time_control_description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center" />
+
+            <TextView
+                android:id="@+id/player1_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/player1_kingIsChecked"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/king_is_checked"
+                android:textColor="#F44336"
+                android:visibility="invisible" />
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>

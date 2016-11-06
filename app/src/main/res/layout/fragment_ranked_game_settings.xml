@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:background="@drawable/background"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/player_layout"
+        android:layout_centerInParent="true"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:orientation="vertical">
+
+            <TextView
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/player_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginTop="10dp" />
+
+            <TextView
+
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:id="@+id/player_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="10dp"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+     android:layout_marginBottom="10dp">
+
+        <Button
+            android:id="@+id/create_new_game"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/create_game" />
+        <Button
+
+            android:id="@+id/join_game"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground"
+            android:text="@string/join_game"
+            />
+    </LinearLayout>
+
+
+    <LinearLayout
+          android:id="@+id/picker_layout"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+       android:layout_below="@+id/player_layout"
+          android:orientation="horizontal">
+
+          <LinearLayout
+
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="2"
+              android:orientation="vertical">
+
+              <TextView
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                  android:text="@string/time_control"
+                  android:textAppearance="?android:attr/textAppearanceLarge" />
+
+              <Spinner
+                  android:id="@+id/spinner_time_control"
+                  style="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+                  android:animationCache="true"
+                  android:background="#50FFFFFF"
+                  android:ellipsize="marquee"
+                  android:spinnerMode="dropdown"
+                  android:layout_width="wrap_content"
+                  android:layout_height="40dp"
+                  android:layout_marginEnd="20dp"
+                  android:layout_marginTop="20dp"
+                 >
+
+              </Spinner>
+          </LinearLayout>
+
+          <LinearLayout
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:orientation="vertical">
+
+              <TextView
+                  android:id="@+id/text_picker_2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                     />
+              <NumberPicker
+
+                  android:id="@+id/time_picker2"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp">
+
+              </NumberPicker>
+
+          </LinearLayout>
+
+          <LinearLayout
+
+              android:layout_width="0dp"
+              android:layout_height="wrap_content"
+              android:layout_weight="1"
+              android:orientation="vertical">
+
+              <TextView
+                  android:text="@string/minutes"
+                  android:id="@+id/text_picker_1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp"
+                   />
+
+              <NumberPicker
+
+                  android:id="@+id/time_picker1"
+                  android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="20dp">
+
+              </NumberPicker>
+          </LinearLayout>
+
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_below="@+id/picker_layout"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_marginEnd="10dp"
+          android:layout_marginStart="10dp"
+          android:layout_marginTop="20dp"
+          android:orientation="horizontal">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="@string/color"
+              android:layout_marginEnd="20dp"
+              android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_marginEnd="20dp"
+             android:orientation="horizontal">
+             <RadioButton
+                 android:id="@+id/white"
+                 android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/white"
+                 android:checked="true"
+                 android:layout_marginEnd="20dp"
+                 />
+                    <RadioButton
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:text="@string/black"
+                 android:checked="false"/>
+         </RadioGroup>
+      </LinearLayout>
+
+</RelativeLayout>
+

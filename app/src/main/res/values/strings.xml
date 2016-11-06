@@ -1,0 +1,188 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">NetChess</string>
+    <string name="resign">Resign</string>
+    <string name="pause">Pause</string>
+    <string name="choose_figure">Make your choice!</string>
+    <string name="takepic">Take</string>
+    <string name="opengallery">Select</string>
+
+    <string-array name="titles">
+        <item>Current Game</item>
+        <item>New Game</item>
+        <item>My Profile</item>
+        <item>Rank List</item>
+        <item>Exit</item>
+    </string-array>
+    <string name="open_drawer">Open Drawer</string>
+    <string name="close_drawer">Close Drawer</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="welcome">Good luck and have fun!</string>
+    <string name="ok">OK</string>
+    <string name="hintPassword">Password (at least 6 characters):</string>
+    <string name="cancel">Cancel</string>
+    <string name="birthdate">Birthdate:</string>
+    <string name="hintEmail">Email:</string>
+    <string name="hintPass">Password:</string>
+    <string name="hintName">Name (visible for other players):</string>
+    <string name="retistration">Registration</string>
+    <string name="logout">Logout</string>
+    <string name="wins">Wins:</string>
+    <string name="draws">Draws:</string>
+    <string name="losses">Losses:</string>
+    <string name="age">Age:</string>
+    <string name="rating">Rating:</string>
+    <string name="upload_photo">Upload photo</string>
+    <string name="your_photo">Your photo</string>
+    <string name="crop_image"><![CDATA[Crop & save]]></string>
+    <string name="flip_board">Flip Board</string>
+    <string name="player_photo">Player\'s avatar</string>
+    <string name="king_is_checked">King is checked!</string>
+    <string name="select_game_type">Select game type</string>
+    <string name="authentication_problem">You must log in first!</string>
+    <string name="online_game">Online</string>
+    <string name="lan_game">Lan</string>
+    <string name="one_device">One device</string>
+    <string name="equal_conditions">Equal rules for both players: </string>
+    <string name="player">Player</string>
+    <string name="handicap">Handicap</string>
+    <string name="start_game">Start game</string>
+    <string name="time_control">Time control:</string>
+    <string name="cancel_move">Cancelable moves:</string>
+    <string name="minutes">Minutes:</string>
+    <string name="moves">Moves:</string>
+    <string name="seconds">Seconds:</string>
+    <string name="undo_move">Undo move</string>
+    <string name="seconds_per_move">Seconds/Move</string>
+    <string name="fisher_timing">Fisher Timing</string>
+    <string name="moves_minutes">Moves/Minutes</string>
+    <string name="hourglass">Hourglass</string>
+    <string name="minutes_per_game">Minutes/Game</string>
+    <string name="extra_seconds">Extra seconds per move</string>
+    <string name="quit_request">Are you sure you want to exit game</string>
+    <string name="game_over">Game is over!</string>
+    <string name="no_progress_draw">50 moves and no progres. The game is drawn!</string>
+    <string name="stalemate_draw">Stalemate. The game is drawn!</string>
+    <string name="material_draw">Insufficient material. The game is drawn!</string>
+    <string name="threefold_draw">Threefold repetition. The game is drawn!</string>
+    <string name="create_game">Create game</string>
+    <string name="join_game">Join game</string>
+    <string name="color">Color:</string>
+    <string name="white">White</string>
+    <string name="black">Black</string>
+    <string name="black_wins">Black wins!</string>
+    <string name="white_wins">White wins!</string>
+    <string name="waiting_for_player">Waiting for other player…</string>
+    <string name="accept_player">This player wants to join your game:</string>
+    <string name="accept">Accept</string>
+    <string name="decline">Decline</string>
+    <string name="loser">Loser</string>
+    <string name="winner">Winner</string>
+    <string name="draw">Draw</string>
+    <string name="chose_or_take_photo">Take a photo or select from gallery?</string>
+    <string name="total">Total games:</string>
+    <string name="offer_draw">Offer draw</string>
+    <string name="name_has_been_changed">Name has been changed.</string>
+    <string name="name_can_not_be_empty">Name can not be empty.</string>
+    <string name="enter_name">Enter name:</string>
+    <string name="photo_has_been_removed">Photo has been removed.</string>
+    <string name="you_have_been_logged_out">You have been logged out!</string>
+    <string name="black_resigned">Black resigned!</string>
+    <string name="white_resigned">White resigned!</string>
+    <string name="your_opponent_offers_you_a_draw">Your opponent offers you a draw.</string>
+    <string name="draw_by_agreement">Draw by mutual agreement</string>
+    <string name="resume">Resume</string>
+    <string name="game_is_paused">Game is paused</string>
+    <string name="plays">plays:</string>
+    <string name="waiting_for_invite_response">Waiting for response from player…</string>
+    <string name="participation_declined">Your participation has been declined</string>
+    <string name="opponent_disconnected">Your opponent has been disconnected</string>
+    <string name="image_has_not_been_selected">Image has not been selected. Please, try again.</string>
+    <string name="authentication_failed">Authentication failed</string>
+    <string name="try_to_log_in">Try to log in…</string>
+    <string name="enter_password">Please, enter the password</string>
+    <string name="enter_email">Please, enter the email</string>
+    <string name="registering_player">Registering Player…</string>
+    <string name="registration_successful">Registration successful!</string>
+    <string name="enter_login">Please, enter the login</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="this_disconnected">You have been disconnected :(</string>
+    <string name="delete_photo">Delete photo</string>
+    <string name="connection_problem">Connection problem</string>
+    <string name="warning">Warning!</string>
+    <string name="game_is_not_finished">You have an unfinished game. If you start a new one, you will lose those game, are you sure?</string>
+    <string name="please_wait">Please, wait…</string>
+    <string name="draw_offer_has_been_sent">Draw offer has been sent</string>
+    <string name="draw_offer_has_been_declined">Your opponent wishes to continue game</string>
+    <string name="move_has_been_done">New move!</string>
+    <string name="you_will_be_disconnected">You will be disconnected in </string>
+    <string name="connection_state_changed">Connection state has been changed</string>
+    <string name="disconnect_now">Disconnect now</string>
+    <string name="seconds_simple">seconds</string>
+    <string name="selected_game_is_not_available">Selected game is not available</string>
+    <string name="send_message">Send message</string>
+    <string name="message_has_been_sent">Message has been sent</string>
+    <string name="enter_message">Enter your message</string>
+    <string name="open_logs">Open logs</string>
+    <string name="close_logs">Close logs</string>
+    <string name="refresh">Refresh list</string>
+    <string name="player_not_exist">Player doesn\'t exist anymore :(</string>
+    <string name="player_birthdate">Player\'s birthdate is </string>
+    <string name="chose_new_date">Select new date:</string>
+    <string name="birthdate_has_been_changed">Birthdate has been changed</string>
+    <string name="search">Search</string>
+    <string name="nothing_found">Nothing was found</string>
+    <string name="player_name">player\'s name</string>
+    <string name="or_date">or date</string>
+    <string name="choose_connection">Choose connection</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="wifi">Wifi</string>
+    <string name="bishop">Bishop</string>
+    <string name="knight">Knight</string>
+    <string name="rook">Rook</string>
+    <string name="queen">Queen</string>
+    <string name="wifi_problem">Wifi-direct is not enabled or supported on your device</string>
+    <string name="label_peers">Available peers: </string>
+    <string name="my_device">My device: </string>
+    <string name="no_devices_found">No devices found</string>
+    <string name="fetching_game_info">Fetching game settings, please wait…</string>
+    <string name="status">Status: </string>
+    <string name="device_name">Name:</string>
+    <string name="connect_to_peer">Woud you like to connect to this device?</string>
+    <string name="device_adress">Address:</string>
+    <string name="start_discovering">Start discovering</string>
+    <string name="discovering_peers">Discovering peers…</string>
+    <string name="connection_canceled">Connection canceled</string>
+    <string name="draw_offer_has_been_accepted">Draw has been accepted</string>
+    <string name="bluetooth_is_not_supported">Your device doesn\'t support bluetooth connection</string>
+    <string name="bluetooth_connected">Bluetooth connected!</string>
+    <string name="connection_failed">Connection failed</string>
+    <string name="you_can_join_only_to_available_or_already_connected_devices">You can join only to available devices or already connected</string>
+    <string name="p2p_not_supported">P2P isn\'t supported on this device</string>
+    <string-array name="handicap">
+        <item>Pawn(A)</item>
+        <item>Pawn(B)</item>
+        <item tools:ignore="TypographyOther">Pawn(C)</item>
+        <item>Pawn(D)</item>
+        <item>Pawn(E)</item>
+        <item>Pawn(F)</item>
+        <item>Pawn(G)</item>
+        <item>Pawn(H)</item>
+        <item>Knight(B)</item>
+        <item>Knight(G)</item>
+        <item tools:ignore="TypographyOther">Bishop(C)</item>
+        <item>Bishop(F)</item>
+        <item>Rook(A)</item>
+        <item>Rook(H)</item>
+        <item>Queen</item>
+    </string-array>
+    <string-array name="time_control">
+        <item>Minutes per game</item>
+        <item>Seconds per move</item>
+        <item>Fisher timing</item>
+        <item>Moves/minutes</item>
+        <item>Hourglass</item>
+    </string-array>
+
+</resources>

@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/layout_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/equal_conditions"
+            android:textAppearance="?android:attr/textAppearanceMedium" />
+
+        <CheckBox
+
+            android:id="@+id/conditions"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00FFFFFF"
+            android:checked="true"
+            android:shadowColor="@color/colorPrimary" />
+    </LinearLayout>
+
+    <TabHost
+        android:id="@+id/tab_host"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/layout_up">
+
+        <LinearLayout
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TabWidget
+                android:id="@android:id/tabs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="?attr/selectableItemBackground">
+
+            </TabWidget>
+
+            <FrameLayout
+                android:id="@android:id/tabcontent"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/tab2"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layout_player2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/handicap"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+
+                            android:id="@+id/player2_handicapCheckbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/player2_spinner_handicap"
+                        style="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+                        android:layout_width="132dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/layout_player2"
+                        android:layout_marginStart="10dp"
+                        android:animationCache="true"
+                        android:background="#50FFFFFF"
+                        android:ellipsize="marquee"
+                        android:spinnerMode="dropdown">
+
+                    </Spinner>
+
+                    <TextView
+                        android:id="@+id/player2_text_picker_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/player2_spinner_time_control"
+                        android:layout_below="@+id/player2_spinner_time_control"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <NumberPicker
+
+                        android:id="@+id/player2_timePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/player2_text_picker_1"
+                        android:layout_below="@id/player2_text_picker_1"
+                        android:layout_marginTop="20dp">
+
+                    </NumberPicker>
+
+                    <TextView
+                        android:id="@+id/player2_text_picker_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/player2_spinner_handicap"
+                        android:layout_below="@id/player2_spinner_handicap"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <NumberPicker
+
+                        android:id="@+id/player2_movePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/player2_text_picker_2"
+                        android:layout_below="@+id/player2_text_picker_2"
+                        android:layout_marginTop="20dp">
+
+                    </NumberPicker>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/time_control"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+                            android:id="@+id/player2_timeControlCheckbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/player2_spinner_time_control"
+                        style="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+                        android:layout_width="160dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@id/layout_player2"
+                        android:layout_marginEnd="10dp"
+                        android:animationCache="true"
+                        android:background="#50FFFFFF"
+                        android:ellipsize="marquee"
+                        android:spinnerMode="dropdown">
+
+                    </Spinner>
+
+
+                    <LinearLayout
+                        android:id="@+id/cancelable_moves_layout_player_2"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:paddingBottom="75dp"
+                        android:paddingTop="15dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/cancel_move"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+
+                            android:id="@+id/player2_cancel_move_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/tab1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/layout_player1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/handicap"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+
+                            android:id="@+id/player1_handicapCheckbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/player1_spinner_handicap"
+                        style="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+                        android:layout_width="132dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_below="@id/layout_player1"
+                        android:layout_marginStart="10dp"
+                        android:animationCache="true"
+                        android:background="#50FFFFFF"
+                        android:ellipsize="marquee"
+                        android:spinnerMode="dropdown">
+
+                    </Spinner>
+
+                    <TextView
+                        android:id="@+id/player1_text_picker_1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/player1_spinner_time_control"
+                        android:layout_below="@+id/player1_spinner_time_control"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <NumberPicker
+
+                        android:id="@+id/player1_timePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/player1_text_picker_1"
+                        android:layout_below="@id/player1_text_picker_1"
+                        android:layout_marginTop="20dp">
+
+                    </NumberPicker>
+
+                    <TextView
+                        android:id="@+id/player1_text_picker_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@id/player1_spinner_handicap"
+                        android:layout_below="@id/player1_spinner_handicap"
+                        android:layout_marginTop="10dp"
+                        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                    <NumberPicker
+
+                        android:id="@+id/player1_movePicker"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignStart="@+id/player1_text_picker_2"
+                        android:layout_below="@+id/player1_text_picker_2"
+                        android:layout_marginTop="20dp">
+
+                    </NumberPicker>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginTop="10dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/time_control"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+                            android:id="@+id/player1_timeControlCheckbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/player1_spinner_time_control"
+                        style="@style/Base.Widget.AppCompat.PopupMenu.Overflow"
+                        android:layout_width="160dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_below="@id/layout_player1"
+                        android:layout_marginEnd="10dp"
+                        android:animationCache="true"
+                        android:background="#50FFFFFF"
+                        android:ellipsize="marquee"
+                        android:spinnerMode="dropdown">
+
+                    </Spinner>
+
+
+                    <LinearLayout
+                        android:id="@+id/cancelable_moves_layout_player_1"
+                        android:visibility="gone"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:orientation="horizontal"
+                        android:paddingBottom="75dp"
+                        >
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:text="@string/cancel_move"
+                            android:textAppearance="?android:attr/textAppearanceLarge" />
+
+                        <CheckBox
+
+                            android:id="@+id/player1_cancel_move_checkbox"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="#00FFFFFF"
+                            android:checked="false"
+                            android:shadowColor="@color/colorPrimary" />
+                    </LinearLayout>
+
+
+                </RelativeLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+
+    </TabHost>
+    <LinearLayout
+        android:id="@+id/color_picker_layout"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal"
+        android:paddingBottom="75dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/color"
+            android:layout_marginEnd="20dp"
+            android:textAppearance="?android:attr/textAppearanceLarge"/>
+
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="20dp"
+            android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/white"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/white"
+                android:checked="true"
+                android:layout_marginEnd="20dp"
+                />
+            <RadioButton
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/black"
+                android:checked="false"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/start_new_game"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/start_game" />
+
+        <Button
+            android:layout_marginEnd="15dp"
+            android:layout_marginStart="15dp"
+            android:id="@+id/join_game"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:background="?attr/selectableItemBackground"
+            android:text="@string/join_game"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+</RelativeLayout>

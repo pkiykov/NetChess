@@ -1,0 +1,81 @@
+{
+  "project_info": {
+    "project_number": "99744666931",
+    "firebase_url": "https://chess-69093.firebaseio.com",
+    "project_id": "chess-69093",
+    "storage_bucket": "chess-69093.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99744666931:android:fb851c193ab9857f",
+        "android_client_info": {
+          "package_name": "com.example.pavel.mychess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99744666931-26322cq7q70p7rh1ttha54nqsvv59avp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.pavel.mychess",
+            "certificate_hash": "133C1A0D3349372BD055213DD17F8160A951AB64"
+          }
+        },
+        {
+          "client_id": "99744666931-f9pde4frnheq2moudujvnbs68ucvgehv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv1Fz0f2nGY8J345dMjoxNE8yNTcBTHPo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:99744666931:android:753dc73a01a0dade",
+        "android_client_info": {
+          "package_name": "com.pkiykov.netchess"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "99744666931-f9pde4frnheq2moudujvnbs68ucvgehv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDv1Fz0f2nGY8J345dMjoxNE8yNTcBTHPo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
