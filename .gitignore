@@ -51,3 +51,9 @@ captures/
 
 # External native build folder generated in Android Studio 2.2 and later
 .externalNativeBuild
+.idea/libraries/
+.idea/workspace.xml
+app/libs/
+app/src/main/res/layout-v21/
+app/src/main/res/services/
+app/src/main/res/values-v21/
