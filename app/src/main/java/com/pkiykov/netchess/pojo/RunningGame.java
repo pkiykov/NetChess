@@ -3,6 +3,7 @@ package com.pkiykov.netchess.pojo;
 import com.pkiykov.netchess.figures.Figure;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.ServerValue;
+import com.pkiykov.netchess.figures.Knight;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -92,11 +93,14 @@ public class RunningGame implements Serializable {
     @Exclude
     public void writeMove(Figure f) {
         char figure = f.getClass().getSimpleName().charAt(0);
-        if (f.getClass().getSimpleName().equals(Figure.KNIGHT)) {
+        if (f instanceof Knight) {
             figure = 'N';
         }
-        this.getMoveList().add(figure + Character.toString((char) (96 + this.getCoordinates().getA())) + String.valueOf(this.getCoordinates().getB())
-                + Character.toString((char) (96 + this.getCoordinates().getA1())) + String.valueOf(this.getCoordinates().getB1()));
+        this.getMoveList().add(figure + Character.toString(
+                (char) (96 + this.getCoordinates().getOldX()))
+                + String.valueOf(this.getCoordinates().getOldY())
+                + Character.toString((char) (96 + this.getCoordinates().getNewX()))
+                + String.valueOf(this.getCoordinates().getNewY()));
     }
 
     public int getStatus() {

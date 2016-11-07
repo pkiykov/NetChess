@@ -1,7 +1,7 @@
 # NetChess
 Own-developed chess game for the android platform. It provides you 3 types of game: 
 
-1. One-device game. It has multiple settings, where you can chose a specific time-control for each player.
+1. One-device game. It has multiple settings, where you can chose oldX specific time-control for each player.
 2. Lan game. This type of game is based on implimentation of peer-2-peer connection via WiFi-direct function.
 3. Online game. Rated games for registered player. Rank-list with all users and rated games with simple list of moves are presented.
 

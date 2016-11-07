@@ -2,15 +2,15 @@ package com.pkiykov.netchess.figures;
 
 interface Actions {
 
-    boolean move(int a1, int b1, boolean recusion);
+    boolean move(int newX, int newY, boolean recursion);
 
-    boolean checkIfLocationIsFree(int a1, int b1);
+    boolean checkIfLocationIsFree(int newX, int newY);
 
-    boolean moveIsLegalIfKingIsChecked(boolean color, int a1, int b1);
+    boolean moveIsLegalIfKingIsChecked(boolean color, int newX, int newY);
 
     boolean kingIsNotChecked(boolean sideToMove);
 
-    void overwriteCoordinates(int a1, int b1);
+    void overwriteCoordinates(int newX, int newY);
 
-    boolean checkIfLocationIsOccupied(int a1, int b1, boolean sideToMove);
+    boolean checkIfLocationIsOccupied(int newX, int newY, boolean sideToMove);
 }

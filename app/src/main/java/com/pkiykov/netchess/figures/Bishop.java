@@ -21,26 +21,26 @@ public class Bishop extends Figure {
             }
         }
 
-        if (Math.abs(a - a1) != Math.abs(b - b1)) {
+        if (Math.abs(oldX - a1) != Math.abs(oldY - b1)) {
             return false;
         }
 
         int k = 1;
-        while (k < Math.abs(a - a1)) {
-            if (b1 > b && a1 > a) {
-                if (!checkIfLocationIsFree(a + k, b + k)) {
+        while (k < Math.abs(oldX - a1)) {
+            if (b1 > oldY && a1 > oldX) {
+                if (!checkIfLocationIsFree(oldX + k, oldY + k)) {
                     return false;
                 }
-            } else if (b1 > b && a > a1) {
-                if (!checkIfLocationIsFree(a - k, b + k)) {
+            } else if (b1 > oldY && oldX > a1) {
+                if (!checkIfLocationIsFree(oldX - k, oldY + k)) {
                     return false;
                 }
-            } else if (b > b1 && a > a1) {
-                if (!checkIfLocationIsFree(a - k, b - k)) {
+            } else if (oldY > b1 && oldX > a1) {
+                if (!checkIfLocationIsFree(oldX - k, oldY - k)) {
                     return false;
                 }
-            } else if (b > b1 && a1 > a) {
-                if (!checkIfLocationIsFree(a + k, b - k)) {
+            } else if (oldY > b1 && a1 > oldX) {
+                if (!checkIfLocationIsFree(oldX + k, oldY - k)) {
                     return false;
                 }
             }

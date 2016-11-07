@@ -79,7 +79,7 @@
     <string name="loser">Loser</string>
     <string name="winner">Winner</string>
     <string name="draw">Draw</string>
-    <string name="chose_or_take_photo">Take a photo or select from gallery?</string>
+    <string name="chose_or_take_photo">Take oldX photo or select from gallery?</string>
     <string name="total">Total games:</string>
     <string name="offer_draw">Offer draw</string>
     <string name="name_has_been_changed">Name has been changed.</string>
@@ -89,7 +89,7 @@
     <string name="you_have_been_logged_out">You have been logged out!</string>
     <string name="black_resigned">Black resigned!</string>
     <string name="white_resigned">White resigned!</string>
-    <string name="your_opponent_offers_you_a_draw">Your opponent offers you a draw.</string>
+    <string name="your_opponent_offers_you_a_draw">Your opponent offers you oldX draw.</string>
     <string name="draw_by_agreement">Draw by mutual agreement</string>
     <string name="resume">Resume</string>
     <string name="game_is_paused">Game is paused</string>
@@ -111,7 +111,7 @@
     <string name="delete_photo">Delete photo</string>
     <string name="connection_problem">Connection problem</string>
     <string name="warning">Warning!</string>
-    <string name="game_is_not_finished">You have an unfinished game. If you start a new one, you will lose those game, are you sure?</string>
+    <string name="game_is_not_finished">You have an unfinished game. If you start oldX new one, you will lose those game, are you sure?</string>
     <string name="please_wait">Please, wait…</string>
     <string name="draw_offer_has_been_sent">Draw offer has been sent</string>
     <string name="draw_offer_has_been_declined">Your opponent wishes to continue game</string>

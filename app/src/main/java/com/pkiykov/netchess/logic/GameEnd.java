@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.pkiykov.netchess.GameActivity;
 import com.pkiykov.netchess.R;
+import com.pkiykov.netchess.figures.Bishop;
 import com.pkiykov.netchess.figures.Figure;
+import com.pkiykov.netchess.figures.King;
+import com.pkiykov.netchess.figures.Knight;
 import com.pkiykov.netchess.fragments.Game;
 import com.pkiykov.netchess.fragments.OnlineGamesList;
 import com.pkiykov.netchess.fragments.RankedGameSettings;
@@ -27,7 +30,6 @@ import static com.pkiykov.netchess.fragments.Game.ONE_DEVICE_GAME;
 import static com.pkiykov.netchess.fragments.Game.ONLINE_GAME;
 import static com.pkiykov.netchess.logic.GameTime.stopTimers;
 import static com.pkiykov.netchess.pojo.FinishedGame.END_GAME_NO_PROGRESS;
-import static com.pkiykov.netchess.pojo.FinishedGame.REASON_CHECKMATE;
 import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
 import static com.pkiykov.netchess.pojo.FinishedGame.REASON_INSUFFICIENT_MATERIAL;
 import static com.pkiykov.netchess.pojo.FinishedGame.REASON_NO_PROGRESS;
@@ -37,7 +39,6 @@ import static com.pkiykov.netchess.pojo.FinishedGame.REASON_THREEFOLD_REPETITION
 import static com.pkiykov.netchess.pojo.RunningGame.GAME_STATUS;
 import static com.pkiykov.netchess.pojo.RunningGame.PLAYER_1_WIN;
 import static com.pkiykov.netchess.pojo.RunningGame.PLAYER_2_WIN;
-import static com.pkiykov.netchess.pojo.RunningGame.THREEFOLD_REPETITION;
 
 public class GameEnd {
 
@@ -208,9 +209,9 @@ public class GameEnd {
 
         int a = 0, b = 0;
         for (Figure f : game.getGameExtraParams().getFigures()) {
-            if (f.getClass().getSimpleName().equals(Figure.KING) && f.isColor() == sideToMove) {
-                a = f.getA();
-                b = f.getB();
+            if (f instanceof King && f.isColor() == sideToMove) {
+                a = f.getOldX();
+                b = f.getOldY();
                 break;
             }
         }
@@ -265,7 +266,7 @@ public class GameEnd {
             boolean isWhiteLightFigure = false;
             boolean isBlackLightFigure = false;
             for (Figure f : game.getGameExtraParams().getFigures()) {
-                if (f.getClass().getSimpleName().equals(Figure.BISHOP) || f.getClass().getSimpleName().equals(Figure.KNIGHT)) {
+                if (f instanceof Bishop || f instanceof Knight) {
                     if (f.isColor()) {
                         isWhiteLightFigure = true;
                     } else {

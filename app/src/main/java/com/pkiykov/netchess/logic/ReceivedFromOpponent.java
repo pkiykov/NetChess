@@ -19,7 +19,6 @@ import static com.pkiykov.netchess.fragments.Game.ONLINE_GAME;
 import static com.pkiykov.netchess.logic.GameTime.HOURGLASS;
 import static com.pkiykov.netchess.logic.GameTime.stopTimers;
 import static com.pkiykov.netchess.logic.Peer2Peer.USER_INFO;
-import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
 import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DRAW_BY_AGREEMENT;
 import static com.pkiykov.netchess.pojo.FinishedGame.REASON_RESIGN;
 import static com.pkiykov.netchess.pojo.Player.NAME;

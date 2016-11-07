@@ -5,9 +5,9 @@ import com.pkiykov.netchess.pojo.GameExtraParams;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public abstract class Figure implements Actions, Serializable{
-    protected int a;
-    protected int b;
+public abstract class Figure implements Actions, Serializable {
+    protected int oldX;
+    protected int oldY;
     protected boolean color;
     boolean firstMove;
     GameExtraParams gameExtraParams;
@@ -18,9 +18,9 @@ public abstract class Figure implements Actions, Serializable{
     public static final String ROOK = "Rook";
     public static final String KING = "King";
 
-    public Figure(int a, int b, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
-        this.a = a;
-        this.b = b;
+    public Figure(int oldX, int oldY, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
+        this.oldX = oldX;
+        this.oldY = oldY;
         this.color = color;
         this.firstMove = true;
         this.gameExtraParams = gameExtraParams;
@@ -35,20 +35,20 @@ public abstract class Figure implements Actions, Serializable{
         this.firstMove = firstMove;
     }
 
-    public int getA() {
-        return a;
+    public int getOldX() {
+        return oldX;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setOldX(int oldX) {
+        this.oldX = oldX;
     }
 
-    public int getB() {
-        return b;
+    public int getOldY() {
+        return oldY;
     }
 
-    public void setB(int b) {
-        this.b = b;
+    public void setOldY(int oldY) {
+        this.oldY = oldY;
     }
 
     public boolean isColor() {
@@ -56,9 +56,9 @@ public abstract class Figure implements Actions, Serializable{
     }
 
     @Override
-    public boolean checkIfLocationIsOccupied(int a1, int b1, boolean sideToMove) {
+    public boolean checkIfLocationIsOccupied(int newX, int newY, boolean sideToMove) {
         for (Figure f : gameExtraParams.getFigures()) {
-            if (f.getA() == a1 && f.getB() == b1)
+            if (f.getOldX() == newX && f.getOldY() == newY)
                 return f.isColor() == sideToMove;
         }
         return false;
@@ -66,18 +66,18 @@ public abstract class Figure implements Actions, Serializable{
 
     @Override
     public boolean kingIsNotChecked(boolean sideToMove) {
-        int aa = 0, bb = 0;
+        int newX = 0, newY = 0;
         for (Figure f : gameExtraParams.getFigures()) {
-            if (f.getClass().getSimpleName().equals(KING) && f.isColor() == sideToMove) {
-                aa = f.getA();
-                bb = f.getB();
+            if (f instanceof King && f.isColor() == sideToMove) {
+                newX = f.getOldX();
+                newY = f.getOldY();
                 break;
             }
         }
 
         for (Figure f : gameExtraParams.getFigures()) {
             if (f.isColor() != sideToMove) {
-                if (f.move(aa, bb, false)) {
+                if (f.move(newX, newY, false)) {
                     return false;
                 }
             }
@@ -86,85 +86,91 @@ public abstract class Figure implements Actions, Serializable{
         return true;
     }
 
+
     @Override
-    public void overwriteCoordinates(int a1, int b1) {
-        a = a1;
-        b = b1;
+    public void overwriteCoordinates(int newX, int newY) {
+        oldX = newX;
+        oldY = newY;
     }
 
 
-
-
     @Override
-    public boolean checkIfLocationIsFree(int a1, int b1) {
+    public boolean checkIfLocationIsFree(int newX, int newY) {
         for (Figure f : gameExtraParams.getFigures()) {
-            if (f.getA() == a1 && f.getB() == b1) {
+            if (f.getOldX() == newX && f.getOldY() == newY) {
                 return false;
             }
         }
         return true;
     }
 
-    public boolean moveIsLegalIfKingIsChecked(boolean color, int a1, int b1) {
+    public boolean moveIsLegalIfKingIsChecked(boolean color, int newX, int newY) {
 
         Figure backup = null;
         for (Figure f : gameExtraParams.getFigures()) {
-            if (f.getA() == a1 && f.getB() == b1) {
+            if (f.getOldX() == newX && f.getOldY() == newY) {
                 backup = f;
                 gameExtraParams.getFigures().remove(f);
                 break;
             }
         }
-        if (backup == null && moveList.size() > 0 && this.getClass().getSimpleName().equals(Figure.PAWN)) {
-            String lastMove = moveList.get(moveList.size()-1);
-            int aa1 = lastMove.charAt(3) - 96;
-            int bb1 = Character.getNumericValue(lastMove.charAt(4));
-            int bb = Character.getNumericValue(lastMove.charAt(2));
-            if (lastMove.contains("P") && a1 == aa1 && Math.abs(bb - b1) == Math.abs(bb1 - b1)) {
-                for (Figure f : gameExtraParams.getFigures()) {
-                    if (f.getA() == aa1 && f.getB() == bb1) {
-                        backup = f;
-                        gameExtraParams.getFigures().remove(f);
-                        break;
-                    }
-                }
-            }
+        if (backup == null && moveList.size() > 0 && this instanceof Pawn) {
+            backup = enpassantCapture(newX, newY);
         }
-        int tmp1 = a;
-        int tmp2 = b;
-        overwriteCoordinates(a1, b1);
+        int tmpX = oldX;
+        int tmpY = oldY;
+        overwriteCoordinates(newX, newY);
 
         if (!kingIsNotChecked(color)) {
             if (backup != null) {
                 gameExtraParams.getFigures().add(backup);
             }
-            overwriteCoordinates(tmp1, tmp2);
+            overwriteCoordinates(tmpX, tmpY);
             return false;
         } else {
             if (backup != null) {
                 gameExtraParams.getFigures().add(backup);
             }
-            overwriteCoordinates(tmp1, tmp2);
+            overwriteCoordinates(tmpX, tmpY);
             return true;
         }
+    }
+
+    private Figure enpassantCapture(int newX, int newY) {
+        Figure backup = null;
+        String lastMove = moveList.get(moveList.size() - 1);
+        int newXfromLastMove = lastMove.charAt(3) - 96;
+        int newYfromLastMove = Character.getNumericValue(lastMove.charAt(4));
+        int oldYfromLastMove = Character.getNumericValue(lastMove.charAt(2));
+        if (lastMove.contains("P") && newX == newXfromLastMove && Math.abs(oldYfromLastMove - newY)
+                == Math.abs(newYfromLastMove - newY)) {
+            for (Figure f : gameExtraParams.getFigures()) {
+                if (f.getOldX() == newXfromLastMove && f.getOldY() == newYfromLastMove) {
+                    backup = f;
+                    gameExtraParams.getFigures().remove(f);
+                    break;
+                }
+            }
+        }
+        return backup;
     }
 
     public void writePosition() {
         StringBuilder sb = new StringBuilder();
         for (Figure f : gameExtraParams.getFigures()) {
-            sb.append(f.getClass().getSimpleName()).append(f.getA()).append(f.getB()).append(f.isColor()).append("\n");
-            if (f.getClass().getSimpleName().equals(Figure.PAWN)) {
+            sb.append(f.getClass().getSimpleName()).append(f.getOldX()).append(f.getOldY()).append(f.isColor()).append("\n");
+            if (f instanceof Pawn) {
                 sb.append(((Pawn) f).isEnPassantCapture());
-            } else if (f.getClass().getSimpleName().equals(Figure.KING) && f.isFirstMove()) {
+            } else if (f instanceof King && f.isFirstMove()) {
                 for (Figure ff : gameExtraParams.getFigures()) {
-                    if (ff.getClass().getSimpleName().equals(Figure.ROOK) && ff.isColor() == f.isColor() && ff.isFirstMove()) {
+                    if (ff instanceof Rook && ff.isColor() == f.isColor() && ff.isFirstMove()) {
                         sb.append(ff.isColor());
                         sb.append(true);
                     }
                 }
             }
         }
-        if (this.getClass().getSimpleName().equals(Figure.PAWN)) {
+        if (this instanceof Pawn) {
             ((Pawn) this).setEnPassantCapture(false);
         }
         sb.append(gameExtraParams.isColor());

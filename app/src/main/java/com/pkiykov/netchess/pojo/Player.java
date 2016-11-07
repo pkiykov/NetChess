@@ -19,6 +19,7 @@ public class Player implements Serializable {
     public static final String PLAYER_RATING = "rating";
     public static final String BIRTHDATE ="birthdate" ;
 
+    private static final int START_PLAYER_RATING = 1400;
     private String id, birthdate, name;
     private int rating, wins, losses, draws, rank;
     private long timestamp;
@@ -26,7 +27,7 @@ public class Player implements Serializable {
     private PlayerGameParams playerGameParams;
 
     public Player() {
-        rating = 1400;
+        rating = START_PLAYER_RATING;
     }
 
     public int getAge() {

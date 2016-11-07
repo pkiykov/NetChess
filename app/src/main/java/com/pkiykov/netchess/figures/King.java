@@ -5,39 +5,39 @@ import com.pkiykov.netchess.pojo.GameExtraParams;
 import java.util.ArrayList;
 
 public class King extends Figure {
-
-    public King(int a, int b, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
-        super(a, b, color, gameExtraParams, moveList);
+    
+    public King(int oldX, int oldY, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
+        super(oldX, oldY, color, gameExtraParams, moveList);
     }
 
     @Override
-    public boolean move(int a1, int b1, boolean recursion) {
+    public boolean move(int newX, int newY, boolean recursion) {
         if (recursion) {
-            if (!checkIfLocationIsFree(a1, b1)) {
-                if (checkIfLocationIsOccupied(a1, b1, color)) {
+            if (!checkIfLocationIsFree(newX, newY)) {
+                if (checkIfLocationIsOccupied(newX, newY, color)) {
                     return false;
                 }
             }
         }
-        if (Math.abs(a1 - a) > 1 || Math.abs(b1 - b) > 1) {
-            if ((a1 != 7 && a1 != 3) || !firstMove) {
+        if (Math.abs(newX - oldX) > 1 || Math.abs(newY - oldY) > 1) {
+            if ((newX != 7 && newX != 3) || !firstMove) {
                 return false;
             }
             if (color) {
-                if (b1 != 1) {
+                if (newY != 1) {
                     return false;
                 }
             } else {
-                if (b1 != 8) {
+                if (newY != 8) {
                     return false;
                 }
             }
-            if (!canCastle(a1, b1)) {
+            if (!canCastle(newX, newY)) {
                 return false;
             }
         }
 
-        return !recursion || moveIsLegalIfKingIsChecked(color, a1, b1);
+        return !recursion || moveIsLegalIfKingIsChecked(color, newX, newY);
 
     }
 
@@ -45,20 +45,20 @@ public class King extends Figure {
         if (!checkIfLocationIsFree(a1 - 1, b1)) {
             return false;
         }
-        int tmp1 = a, tmp2 = b;
+        int tmpX = oldX, tmpY = oldY;
         if (a1 == 3) {
             int k = 0;
             while (k < 2) {
                 if (!kingIsNotChecked(color)) {
-                    overwriteCoordinates(tmp1, tmp2);
+                    overwriteCoordinates(tmpX, tmpY);
                     return false;
                 }
-                overwriteCoordinates(a - k, b1);
+                overwriteCoordinates(oldX - k, b1);
                 k++;
             }
-            overwriteCoordinates(tmp1, tmp2);
+            overwriteCoordinates(tmpX, tmpY);
             for (Figure f : gameExtraParams.getFigures()) {
-                if (f.getA() == 1 && f.getB() == b1) {
+                if (f.getOldX() == 1 && f.getOldY() == b1) {
                     return f.isFirstMove();
                 }
             }
@@ -67,15 +67,15 @@ public class King extends Figure {
             int k = 0;
             while (k < 2) {
                 if (!kingIsNotChecked(color)) {
-                    overwriteCoordinates(tmp1, tmp2);
+                    overwriteCoordinates(tmpX, tmpY);
                     return false;
                 }
-                overwriteCoordinates(a + k, b1);
+                overwriteCoordinates(oldX + k, b1);
                 k++;
             }
-            overwriteCoordinates(tmp1, tmp2);
+            overwriteCoordinates(tmpX, tmpY);
             for (Figure f : gameExtraParams.getFigures()) {
-                if (f.getA() == 8 && f.getB() == b1) {
+                if (f.getOldX() == 8 && f.getOldY() == b1) {
                     return f.isFirstMove();
                 }
             }

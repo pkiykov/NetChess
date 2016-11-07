@@ -9,45 +9,45 @@ public class Coordinates implements Serializable {
     public static final int KNIGHT_ID = 3;
     public static final int BISHOP_ID = 4;
 
-    private int a, a1, b, b1, figureType;
+    private int oldX, newX, oldY, newY, figureType;
 
     @Override
     public boolean equals(Object obj) {
-        return ((Coordinates) obj).getClass().equals(obj.getClass()) && ((Coordinates) obj).getA() == this.getA()
-                && ((Coordinates) obj).getB() == this.getB() && ((Coordinates) obj).getA1() == this.getA1()
-                && ((Coordinates) obj).getB1() == this.getB1();
+        return ((Coordinates) obj).getClass().equals(obj.getClass()) && ((Coordinates) obj).getOldX() == this.getOldX()
+                && ((Coordinates) obj).getOldY() == this.getOldY() && ((Coordinates) obj).getNewX() == this.getNewX()
+                && ((Coordinates) obj).getNewY() == this.getNewY();
     }
 
-    public int getA() {
-        return a;
+    public int getOldX() {
+        return oldX;
     }
 
-    public void setA(int a) {
-        this.a = a;
+    public void setOldX(int oldX) {
+        this.oldX = oldX;
     }
 
-    public int getA1() {
-        return a1;
+    public int getNewX() {
+        return newX;
     }
 
-    public void setA1(int a1) {
-        this.a1 = a1;
+    public void setNewX(int newX) {
+        this.newX = newX;
     }
 
-    public int getB() {
-        return b;
+    public int getOldY() {
+        return oldY;
     }
 
-    public void setB(int b) {
-        this.b = b;
+    public void setOldY(int oldY) {
+        this.oldY = oldY;
     }
 
-    public int getB1() {
-        return b1;
+    public int getNewY() {
+        return newY;
     }
 
-    public void setB1(int b1) {
-        this.b1 = b1;
+    public void setNewY(int newY) {
+        this.newY = newY;
     }
 
     public int getFigureType() {

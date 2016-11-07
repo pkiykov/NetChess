@@ -8,82 +8,90 @@ public class Pawn extends Figure {
 
     private boolean enPassantCapture;
 
-    public Pawn(int a, int b, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
-        super(a, b, color, gameExtraParams, moveList);
+    public Pawn(int oldX, int oldY, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
+        super(oldX, oldY, color, gameExtraParams, moveList);
         enPassantCapture = false;
     }
 
     @Override
-    public boolean move(int a1, int b1, boolean recursion) {
+    public boolean move(int newX, int newY, boolean recursion) {
         if (recursion) {
-            if (!checkIfLocationIsFree(a1, b1)) {
-                if (checkIfLocationIsOccupied(a1, b1, color) || a == a1) {
+            if (!checkIfLocationIsFree(newX, newY)) {
+                if (checkIfLocationIsOccupied(newX, newY, color) || oldX == newX) {
                     return false;
                 }
             }
         }
 
-        if (Math.abs(b1 - b) > 2 || Math.abs(a1 - a) > 1) {
+        if (Math.abs(newY - oldY) > 2 || Math.abs(newX - oldX) > 1) {
             return false;
         }
-        if (Math.abs(b1 - b) > 1 && a != a1) {
+        if (Math.abs(newY - oldY) > 1 && oldX != newX) {
             return false;
         }
         if (color) {
-            if (b1 <= b) {
+            if (newY <= oldY) {
                 return false;
             }
         } else {
-            if (b1 >= b) {
+            if (newY >= oldY) {
                 return false;
             }
         }
-        if (!firstMove && Math.abs(b1 - b) == 2) {
+        if (!firstMove && Math.abs(newY - oldY) == 2) {
             return false;
         }
-        if (a == a1) {
+        if (oldX == newX) {
             if (color) {
-                if (!checkIfLocationIsFree(a1, b + 1)) {
+                if (!checkIfLocationIsFree(newX, oldY + 1)) {
                     return false;
                 }
-                if (b1 - b == 2) {
-                    if (!checkIfLocationIsFree(a1, b + 2)) {
+                if (newY - oldY == 2) {
+                    if (!checkIfLocationIsFree(newX, oldY + 2)) {
                         return false;
                     }
                 }
             } else {
-                if (!checkIfLocationIsFree(a1, b - 1)) {
+                if (!checkIfLocationIsFree(newX, oldY - 1)) {
                     return false;
                 }
-                if (b - b1 == 2) {
-                    if (!checkIfLocationIsFree(a1, b - 2)) {
+                if (oldY - newY == 2) {
+                    if (!checkIfLocationIsFree(newX, oldY - 2)) {
                         return false;
                     }
                 }
             }
         }
 
-        if (a != a1 && checkIfLocationIsFree(a1, b1)) {
-            String move = "";
-            if (moveList.size() != 0) {
-                move = moveList.get(moveList.size()-1);
-            }
-            if (move.contains("P")) {
-                move = move.substring(1);
-                if (move.charAt(0) != move.charAt(2) || (char) (96 + a1) != move.charAt(0)
-                        || Math.abs(Character.getNumericValue(move.charAt(1)) - b1) != Math
-                        .abs(Character.getNumericValue(move.charAt(3)) - b1)) {
-                    return false;
-                }
-                enPassantCapture = true;
-            } else {
-                return false;
-            }
+        if (oldX != newX && checkIfLocationIsFree(newX, newY)) {
+           if(!enPassantCapture(newX, newY)){
+               return false;
+           }
         }
 
-        return !recursion || moveIsLegalIfKingIsChecked(color, a1, b1);
+        return !recursion || moveIsLegalIfKingIsChecked(color, newX, newY);
 
     }
+
+    private boolean enPassantCapture(int newX, int newY) {
+        String move = "";
+        if (moveList.size() != 0) {
+            move = moveList.get(moveList.size()-1);
+        }
+        if (move.contains("P")) {
+            move = move.substring(1);
+            if (move.charAt(0) != move.charAt(2) || (char) (96 + newX) != move.charAt(0)
+                    || Math.abs(Character.getNumericValue(move.charAt(1)) - newY) != Math
+                    .abs(Character.getNumericValue(move.charAt(3)) - newY)) {
+                return false;
+            }
+            enPassantCapture = true;
+        } else {
+            return false;
+        }
+        return true;
+    }
+
     boolean isEnPassantCapture() {
         return enPassantCapture;
     }

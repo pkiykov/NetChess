@@ -9,7 +9,9 @@ import android.widget.ImageView;
 import com.pkiykov.netchess.R;
 import com.pkiykov.netchess.figures.Bishop;
 import com.pkiykov.netchess.figures.Figure;
+import com.pkiykov.netchess.figures.King;
 import com.pkiykov.netchess.figures.Knight;
+import com.pkiykov.netchess.figures.Pawn;
 import com.pkiykov.netchess.figures.Queen;
 import com.pkiykov.netchess.figures.Rook;
 import com.pkiykov.netchess.fragments.Game;
@@ -54,21 +56,21 @@ public class GameMove {
         if (game.getGameExtraParams().getMoveWhenAddedFiguresList().size() > 0) {
             if (game.getGameExtraParams().getCountMoves() == game.getGameExtraParams()
                     .getMoveWhenAddedFiguresList().getLast()) {
-                int a = game.getGameExtraParams().getAddedFigureList().getLast().getA();
-                int b = game.getGameExtraParams().getAddedFigureList().getLast().getB();
+                int oldX = game.getGameExtraParams().getAddedFigureList().getLast().getOldX();
+                int oldY = game.getGameExtraParams().getAddedFigureList().getLast().getOldY();
                 game.getGameExtraParams().getFigures().remove(game.getGameExtraParams()
                         .getAddedFigureList().getLast());
-                game.getPiece()[8 - b][a - 1].setImageDrawable(null);
-                game.getPiece()[8 - b][a - 1].setTag(null);
+                game.getPiece()[8 - oldY][oldX - 1].setImageDrawable(null);
+                game.getPiece()[8 - oldY][oldX - 1].setTag(null);
 
                 game.getGameExtraParams().getMoveWhenAddedFiguresList().removeLast();
                 game.getGameExtraParams().getAddedFigureList().removeLast();
 
-                int aa = game.getGameExtraParams().getRemovedFigureList().getLast().getA();
-                int bb = game.getGameExtraParams().getRemovedFigureList().getLast().getB();
+                int oldXprevious = game.getGameExtraParams().getRemovedFigureList().getLast().getOldX();
+                int oldYprevious = game.getGameExtraParams().getRemovedFigureList().getLast().getOldY();
                 game.getGameExtraParams().getFigures().add(game.getGameExtraParams().getRemovedFigureList().getLast());
-                game.getPiece()[8 - bb][aa - 1].setImageResource(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
-                game.getPiece()[8 - bb][aa - 1].setTag(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
+                game.getPiece()[8 - oldYprevious][oldXprevious - 1].setImageResource(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
+                game.getPiece()[8 - oldYprevious][oldXprevious - 1].setTag(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
 
 
                 game.getGameExtraParams().getMoveWhenRemovedFiguresList().removeLast();
@@ -79,8 +81,8 @@ public class GameMove {
                             == game.getGameExtraParams().getCountMoves()) {
                         game.getGameExtraParams().getFigures()
                                 .add(game.getGameExtraParams().getRemovedFigureList().getLast());
-                        game.getPiece()[8 - b][a - 1].setImageResource(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
-                        game.getPiece()[8 - b][a - 1].setTag(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
+                        game.getPiece()[8 - oldY][oldX - 1].setImageResource(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
+                        game.getPiece()[8 - oldY][oldX - 1].setTag(game.getGameExtraParams().getRemovedFiguresImageList().getLast());
                         game.getGameExtraParams().getMoveWhenRemovedFiguresList().removeLast();
                         game.getGameExtraParams().getRemovedFiguresImageList().removeLast();
                         game.getGameExtraParams().getRemovedFigureList().removeLast();
@@ -91,14 +93,14 @@ public class GameMove {
         if (game.getGameExtraParams().getMoveWhenRemovedFiguresList().size() > 0) {
             if (game.getGameExtraParams().getCountMoves() == game.getGameExtraParams().getMoveWhenRemovedFiguresList().getLast()) {
 
-                int a = game.getGameExtraParams().getRemovedFigureList().getLast().getA();
-                int b = game.getGameExtraParams().getRemovedFigureList().getLast().getB();
+                int oldX = game.getGameExtraParams().getRemovedFigureList().getLast().getOldX();
+                int oldY = game.getGameExtraParams().getRemovedFigureList().getLast().getOldY();
                 game.getGameExtraParams().getFigures().add(game.getGameExtraParams().getRemovedFigureList().getLast());
 
                 int lastImage = game.getGameExtraParams().getRemovedFiguresImageList().getLast();
 
-                game.getPiece()[8 - b][a - 1].setImageResource(lastImage);
-                game.getPiece()[8 - b][a - 1].setTag(lastImage);
+                game.getPiece()[8 - oldY][oldX - 1].setImageResource(lastImage);
+                game.getPiece()[8 - oldY][oldX - 1].setTag(lastImage);
                 game.getGameExtraParams().getMoveWhenRemovedFiguresList().removeLast();
                 game.getGameExtraParams().getRemovedFigureList().removeLast();
                 game.getGameExtraParams().getRemovedFiguresImageList().removeLast();
@@ -111,27 +113,27 @@ public class GameMove {
             int from = game.getGameExtraParams().getMoveFromList().getLast();
             int to = game.getGameExtraParams().getMoveToList().getLast();
 
-            game.getRunningGame().getCoordinates().setA(from % 8 + 1);
-            game.getRunningGame().getCoordinates().setB(8 - from / 8);
+            game.getRunningGame().getCoordinates().setOldX(from % 8 + 1);
+            game.getRunningGame().getCoordinates().setOldY(8 - from / 8);
 
-            game.getRunningGame().getCoordinates().setA1(to % 8 + 1);
-            game.getRunningGame().getCoordinates().setB1(8 - to / 8);
+            game.getRunningGame().getCoordinates().setNewX(to % 8 + 1);
+            game.getRunningGame().getCoordinates().setNewY(8 - to / 8);
 
-            game.getGameExtraParams().getFigureMoved().getLast().setA(game.getRunningGame().getCoordinates().getA());
-            game.getGameExtraParams().getFigureMoved().getLast().setB(game.getRunningGame().getCoordinates().getB());
+            game.getGameExtraParams().getFigureMoved().getLast().setOldX(game.getRunningGame().getCoordinates().getOldX());
+            game.getGameExtraParams().getFigureMoved().getLast().setOldY(game.getRunningGame().getCoordinates().getOldY());
             game.getGameExtraParams().getFigureMoved().getLast().setFirstMove(game.getGameExtraParams().getFirstMoveFiguresList().getLast());
 
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setImageResource(game.getGameExtraParams().getMovedFiguresImageList().getLast());
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setTag(game.getGameExtraParams().getMovedFiguresImageList().getLast());
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setImageResource(game.getGameExtraParams().getMovedFiguresImageList().getLast());
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setTag(game.getGameExtraParams().getMovedFiguresImageList().getLast());
 
-            if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()][game.getRunningGame().getCoordinates().getA1() - 1].getTag() != null) {
-                String s1 = game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()][game.getRunningGame().getCoordinates().getA1() - 1].getTag().toString();
+            if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()][game.getRunningGame().getCoordinates().getNewX() - 1].getTag() != null) {
+                String s1 = game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()][game.getRunningGame().getCoordinates().getNewX() - 1].getTag().toString();
                 String s2 = String.valueOf(game.getGameExtraParams().getMovedFiguresImageList().getLast());
                 if (s1.equals(s2)) {
-                    game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                            [game.getRunningGame().getCoordinates().getA1() - 1].setImageDrawable(null);
-                    game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                            [game.getRunningGame().getCoordinates().getA1() - 1].setTag(null);
+                    game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                            [game.getRunningGame().getCoordinates().getNewX() - 1].setImageDrawable(null);
+                    game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                            [game.getRunningGame().getCoordinates().getNewX() - 1].setTag(null);
                 }
             }
             game.getGameExtraParams().getMovedFiguresImageList().removeLast();
@@ -140,7 +142,7 @@ public class GameMove {
             game.getGameExtraParams().getMoveToList().removeLast();
             game.getGameExtraParams().getFirstMoveFiguresList().removeLast();
             if (game.getGameExtraParams().getFigureMoved().size() > 0) {
-                if (!game.getGameExtraParams().getFigureMoved().getLast().getClass().getSimpleName().equals(Figure.KING)
+                if (!(game.getGameExtraParams().getFigureMoved().getLast() instanceof King)
                         || Math.abs(game.getGameExtraParams().getMoveFromList().getLast() - game.getGameExtraParams().getMoveToList().getLast()) != 2) {
                     k++;
                 }
@@ -182,8 +184,8 @@ public class GameMove {
 
     void tryToMove(View v) {
         int to = Integer.parseInt(v.getTag().toString());
-        game.getRunningGame().getCoordinates().setA1(to % 8 + 1);
-        game.getRunningGame().getCoordinates().setB1(8 - to / 8);
+        game.getRunningGame().getCoordinates().setNewX(to % 8 + 1);
+        game.getRunningGame().getCoordinates().setNewY(8 - to / 8);
         boolean flag = true;
         if (game.getPressed() != null) {
             if (game.getGameType() == ONLINE_GAME) {
@@ -192,23 +194,23 @@ public class GameMove {
                 game.getPeer2Peer().getReceivedFromOpponent().setMoveFromOpponent(false);
             }
             int from = Integer.parseInt(game.getPressed().getTag().toString());
-            game.getRunningGame().getCoordinates().setA(from % 8 + 1);
-            game.getRunningGame().getCoordinates().setB(8 - from / 8);
+            game.getRunningGame().getCoordinates().setOldX(from % 8 + 1);
+            game.getRunningGame().getCoordinates().setOldY(8 - from / 8);
             int n = findFigureByCoordinates();
             if (n != -1) {
-                flag = moveFull(n, from, to, flag);
+                flag = moveFull(n, from, to, true);
             }
             if (flag) {
                 if (!moveOk) {
                     if (game.getRunningGame().getMoveList().size() > 0) {
-                        int a11 = game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(1) - 96;
-                        int a22 = game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(3) - 96;
-                        int b11 = Character.getNumericValue(game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(2));
-                        int b22 = Character.getNumericValue(game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(4));
+                        int oldXfromLastMove = game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(1) - 96;
+                        int newXfromLastMove = game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(3) - 96;
+                        int oldYfromLastMove = Character.getNumericValue(game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(2));
+                        int newYfromLastMove = Character.getNumericValue(game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1).charAt(4));
 
                         for (int ii = 1; ii < 9; ii++) {
                             for (int jj = 1; jj < 9; jj++) {
-                                if ((a11 == ii && b11 == jj) || (a22 == ii && b22 == jj)) {
+                                if ((oldXfromLastMove == ii && oldYfromLastMove == jj) || (newXfromLastMove == ii && newYfromLastMove == jj)) {
                                     game.getSelect()[8 - jj][ii - 1].setImageResource(R.drawable.red);
                                     continue;
                                 }
@@ -250,14 +252,14 @@ public class GameMove {
         boolean flag = false;
         for (int k = 0; k < game.getGameExtraParams().getFigures().size(); k++) {
             Figure f = game.getGameExtraParams().getFigures().get(k);
-            if (f.getA() == game.getRunningGame().getCoordinates().getA1() && f.getB()
-                    == game.getRunningGame().getCoordinates().getB1()) {
+            if (f.getOldX() == game.getRunningGame().getCoordinates().getNewX() && f.getOldY()
+                    == game.getRunningGame().getCoordinates().getNewY()) {
                 if (f.isColor() == game.getGameExtraParams().isColor())
                     for (int i = 1; i <= game.getImages().length; i++) {
                         for (int j = 1; j <= game.getImages().length; j++) {
-                            game.getRunningGame().getCoordinates().setA1(i);
-                            game.getRunningGame().getCoordinates().setB1(j);
-                            if (f.move(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(), true)) {
+                            game.getRunningGame().getCoordinates().setNewX(i);
+                            game.getRunningGame().getCoordinates().setNewY(j);
+                            if (f.move(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(), true)) {
                                 flag = true;
                                 game.getHighlight()[8 - j][i - 1].setImageResource(R.drawable.highlight_moves);
                             }
@@ -273,7 +275,7 @@ public class GameMove {
 
     private boolean moveFull(int n, int from, int to, boolean flag) {
         Figure f = game.getGameExtraParams().getFigures().get(n);
-        if (f.move(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(), true)) {
+        if (f.move(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(), true)) {
             boolean firstMove = f.isFirstMove();
             if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves() || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                 game.getGameExtraParams().getFigureMoved().add(f);
@@ -281,8 +283,8 @@ public class GameMove {
                 game.getGameExtraParams().getMoveToList().add(to);
                 game.getGameExtraParams().getFirstMoveFiguresList().add(firstMove);
                 game.getGameExtraParams().getMovedFiguresImageList().add
-                        (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()]
-                                [game.getRunningGame().getCoordinates().getA() - 1].getTag().toString()));
+                        (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()]
+                                [game.getRunningGame().getCoordinates().getOldX() - 1].getTag().toString()));
             }
             coordinatesUpdated(f);
             flag = false;
@@ -292,8 +294,8 @@ public class GameMove {
 
 
     private void moveContinue(Figure f) {
-        game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setImageDrawable(null);
-        game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setTag(null);
+        game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setImageDrawable(null);
+        game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setTag(null);
         game.getGameExtraParams().setColor(!game.getGameExtraParams().isColor());
         f.writePosition();
         game.getRunningGame().writeMove(f);
@@ -313,8 +315,8 @@ public class GameMove {
     private void setUpFieldChanges() {
         game.getGameGo().changeKingIsCheckedTextView();
         clearSelect(game.getSelect());
-        game.getSelect()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setImageResource(R.drawable.red);
-        game.getSelect()[8 - game.getRunningGame().getCoordinates().getB1()][game.getRunningGame().getCoordinates().getA1() - 1].setImageResource(R.drawable.red);
+        game.getSelect()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setImageResource(R.drawable.red);
+        game.getSelect()[8 - game.getRunningGame().getCoordinates().getNewY()][game.getRunningGame().getCoordinates().getNewX() - 1].setImageResource(R.drawable.red);
         clearSelect(game.getHighlight());
     }
 
@@ -353,8 +355,8 @@ public class GameMove {
 
     int findFigureByCoordinates() {
         for (int n = 0; n < game.getGameExtraParams().getFigures().size(); n++) {
-            if (game.getGameExtraParams().getFigures().get(n).getA() == game.getRunningGame().getCoordinates().getA()
-                    && game.getGameExtraParams().getFigures().get(n).getB() == game.getRunningGame().getCoordinates().getB()
+            if (game.getGameExtraParams().getFigures().get(n).getOldX() == game.getRunningGame().getCoordinates().getOldX()
+                    && game.getGameExtraParams().getFigures().get(n).getOldY() == game.getRunningGame().getCoordinates().getOldY()
                     && game.getGameExtraParams().getFigures().get(n).isColor() == game.getGameExtraParams().isColor()) {
                 return n;
             }
@@ -363,37 +365,37 @@ public class GameMove {
     }
 
     private void changeFigureImage() {
-        if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()]
-                [game.getRunningGame().getCoordinates().getA() - 1].getTag() != null) {
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                    [game.getRunningGame().getCoordinates().getA1() - 1].setImageResource
-                    (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()]
-                            [game.getRunningGame().getCoordinates().getA() - 1].getTag().toString()));
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                    [game.getRunningGame().getCoordinates().getA1() - 1].setTag
-                    (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()]
-                            [game.getRunningGame().getCoordinates().getA() - 1].getTag().toString()));
+        if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()]
+                [game.getRunningGame().getCoordinates().getOldX() - 1].getTag() != null) {
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                    [game.getRunningGame().getCoordinates().getNewX() - 1].setImageResource
+                    (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()]
+                            [game.getRunningGame().getCoordinates().getOldX() - 1].getTag().toString()));
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                    [game.getRunningGame().getCoordinates().getNewX() - 1].setTag
+                    (Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()]
+                            [game.getRunningGame().getCoordinates().getOldX() - 1].getTag().toString()));
         }
     }
 
     private void overwriteAndRemove(Figure f) {
         game.getGameExtraParams().setCountNoProgressMoves(game.getGameExtraParams().getCountNoProgressMoves() + 1);
         f.setFirstMove(false);
-        if (f.getClass().getSimpleName().equals(Figure.KING)
-                && Math.abs(game.getRunningGame().getCoordinates().getA() - game.getRunningGame().getCoordinates().getA1()) == 2) {
+        if (f instanceof King && Math.abs(game.getRunningGame().getCoordinates().getOldX()
+                - game.getRunningGame().getCoordinates().getNewX()) == 2) {
             overwriteCastle();
-        } else if (game.getRunningGame().getMoveList().size() > 0 && f.getClass().getSimpleName().equals(Figure.PAWN)) {
+        } else if (game.getRunningGame().getMoveList().size() > 0 && f instanceof Pawn) {
             overwriteEnPassantCapture();
         } else {
             for (Figure fff : game.getGameExtraParams().getFigures()) {
-                if (fff.getA() == game.getRunningGame().getCoordinates().getA1() && fff.getB() == game.getRunningGame().getCoordinates().getB1()) {
+                if (fff.getOldX() == game.getRunningGame().getCoordinates().getNewX() && fff.getOldY() == game.getRunningGame().getCoordinates().getNewY()) {
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getMoveWhenRemovedFiguresList().add(game.getGameExtraParams().getCountMoves());
                         game.getGameExtraParams().getRemovedFigureList().add(fff);
                         game.getGameExtraParams().getRemovedFiguresImageList()
-                                .add(Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                                        [game.getRunningGame().getCoordinates().getA1() - 1].getTag().toString()));
+                                .add(Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                                        [game.getRunningGame().getCoordinates().getNewX() - 1].getTag().toString()));
                     }
                     game.getGameExtraParams().getFigures().remove(fff);
                     game.getGameExtraParams().setCountNoProgressMoves(0);
@@ -404,51 +406,52 @@ public class GameMove {
     }
 
     private boolean isPawnToQueen(Figure f) {
-        if (f.getClass().getSimpleName().equals(Figure.PAWN) && (game.getRunningGame().getCoordinates().getB1() == 8 || game.getRunningGame().getCoordinates().getB1() == 1)) {
+        if (f instanceof Pawn && (game.getRunningGame().getCoordinates().getNewY() == 8
+                || game.getRunningGame().getCoordinates().getNewY() == 1)) {
             if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves() || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                 game.getGameExtraParams().getMoveWhenRemovedFiguresList().add(game.getGameExtraParams().getCountMoves());
                 game.getGameExtraParams().getRemovedFigureList().add(f);
-                if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()][game.getRunningGame().getCoordinates().getA1() - 1].getTag() != null) {
-                    game.getGameExtraParams().getRemovedFiguresImageList().add(Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                            [game.getRunningGame().getCoordinates().getA1() - 1].getTag().toString()));
+                if (game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()][game.getRunningGame().getCoordinates().getNewX() - 1].getTag() != null) {
+                    game.getGameExtraParams().getRemovedFiguresImageList().add(Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                            [game.getRunningGame().getCoordinates().getNewX() - 1].getTag().toString()));
                 }
             }
             game.getGameExtraParams().getFigures().remove(f);
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setImageDrawable(null);
-            game.getPiece()[8 - game.getRunningGame().getCoordinates().getB()][game.getRunningGame().getCoordinates().getA() - 1].setTag(null);
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setImageDrawable(null);
+            game.getPiece()[8 - game.getRunningGame().getCoordinates().getOldY()][game.getRunningGame().getCoordinates().getOldX() - 1].setTag(null);
             return true;
         }
         return false;
     }
 
     private void overwriteCastle() {
-        if (game.getRunningGame().getCoordinates().getA1() == 7) {
+        if (game.getRunningGame().getCoordinates().getNewX() == 7) {
             for (Figure f : game.getGameExtraParams().getFigures()) {
-                if (f.getA() == 8 && f.getClass().getSimpleName().equals(Figure.ROOK) && f.isColor() == game.getGameExtraParams().isColor()) {
+                if (f.getOldX() == 8 && f instanceof Rook && f.isColor() == game.getGameExtraParams().isColor()) {
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getFirstMoveFiguresList().add(f.isFirstMove());
-                        game.getGameExtraParams().getMoveFromList().add((8 - f.getB()) * 8 + f.getA() - 1);
-                        game.getGameExtraParams().getMovedFiguresImageList().add(Integer.parseInt(game.getPiece()[8 - f.getB()][f.getA() - 1].getTag().toString()));
+                        game.getGameExtraParams().getMoveFromList().add((8 - f.getOldY()) * 8 + f.getOldX() - 1);
+                        game.getGameExtraParams().getMovedFiguresImageList().add(Integer.parseInt(game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].getTag().toString()));
                     }
 
-                    game.getPiece()[8 - f.getB()][f.getA() - 1].setImageDrawable(null);
-                    game.getPiece()[8 - f.getB()][f.getA() - 1].setTag(null);
-                    f.setA(6);
+                    game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].setImageDrawable(null);
+                    game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].setTag(null);
+                    f.setOldX(6);
                     f.setFirstMove(false);
 
                     if (game.getGameExtraParams().isColor()) {
-                        game.getPiece()[8 - f.getB()][5].setImageResource(R.drawable.rook_white);
-                        game.getPiece()[8 - f.getB()][5].setTag(R.drawable.rook_white);
+                        game.getPiece()[8 - f.getOldY()][5].setImageResource(R.drawable.rook_white);
+                        game.getPiece()[8 - f.getOldY()][5].setTag(R.drawable.rook_white);
 
                     } else {
-                        game.getPiece()[8 - f.getB()][5].setImageResource(R.drawable.rook_black);
-                        game.getPiece()[8 - f.getB()][5].setTag(R.drawable.rook_black);
+                        game.getPiece()[8 - f.getOldY()][5].setImageResource(R.drawable.rook_black);
+                        game.getPiece()[8 - f.getOldY()][5].setTag(R.drawable.rook_black);
                     }
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getFigureMoved().add(f);
-                        game.getGameExtraParams().getMoveToList().add((8 - f.getB()) * 8 + f.getA() - 1);
+                        game.getGameExtraParams().getMoveToList().add((8 - f.getOldY()) * 8 + f.getOldX() - 1);
                     }
 
                     break;
@@ -456,29 +459,29 @@ public class GameMove {
             }
         } else {
             for (Figure f : game.getGameExtraParams().getFigures()) {
-                if (f.getA() == 1 && f.getClass().getSimpleName().equals(Figure.ROOK) && f.isColor() == game.getGameExtraParams().isColor()) {
+                if (f.getOldX() == 1 && f instanceof Rook && f.isColor() == game.getGameExtraParams().isColor()) {
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getFirstMoveFiguresList().add(f.isFirstMove());
-                        game.getGameExtraParams().getMoveFromList().add((8 - f.getB()) * 8 + f.getA() - 1);
+                        game.getGameExtraParams().getMoveFromList().add((8 - f.getOldY()) * 8 + f.getOldX() - 1);
                         game.getGameExtraParams().getMovedFiguresImageList()
-                                .add(Integer.parseInt(game.getPiece()[8 - f.getB()][f.getA() - 1].getTag().toString()));
+                                .add(Integer.parseInt(game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].getTag().toString()));
                     }
-                    game.getPiece()[8 - f.getB()][f.getA() - 1].setImageDrawable(null);
-                    game.getPiece()[8 - f.getB()][f.getA() - 1].setTag(null);
-                    f.setA(4);
+                    game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].setImageDrawable(null);
+                    game.getPiece()[8 - f.getOldY()][f.getOldX() - 1].setTag(null);
+                    f.setOldX(4);
                     f.setFirstMove(false);
                     if (game.getGameExtraParams().isColor()) {
-                        game.getPiece()[8 - f.getB()][3].setImageResource(R.drawable.rook_white);
-                        game.getPiece()[8 - f.getB()][3].setTag(R.drawable.rook_white);
+                        game.getPiece()[8 - f.getOldY()][3].setImageResource(R.drawable.rook_white);
+                        game.getPiece()[8 - f.getOldY()][3].setTag(R.drawable.rook_white);
                     } else {
-                        game.getPiece()[8 - f.getB()][3].setImageResource(R.drawable.rook_black);
-                        game.getPiece()[8 - f.getB()][3].setTag(R.drawable.rook_black);
+                        game.getPiece()[8 - f.getOldY()][3].setImageResource(R.drawable.rook_black);
+                        game.getPiece()[8 - f.getOldY()][3].setTag(R.drawable.rook_black);
                     }
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getFigureMoved().add(f);
-                        game.getGameExtraParams().getMoveToList().add((8 - f.getB()) * 8 + f.getA() - 1);
+                        game.getGameExtraParams().getMoveToList().add((8 - f.getOldY()) * 8 + f.getOldX() - 1);
                     }
                     break;
                 }
@@ -488,37 +491,37 @@ public class GameMove {
 
     private void overwriteEnPassantCapture() {
         String lastMove = game.getRunningGame().getMoveList().get(game.getRunningGame().getMoveList().size() - 1);
-        int aa1 = (lastMove.charAt(3) - 96);
-        int bb1 = Character.getNumericValue(lastMove.charAt(4));
-        int bb = Character.getNumericValue(lastMove.charAt(2));
-        if (lastMove.contains("P") && game.getRunningGame().getCoordinates().getA1() == aa1
-                && Math.abs(bb - game.getRunningGame().getCoordinates().getB1())
-                == Math.abs(bb1 - game.getRunningGame().getCoordinates().getB1())) {
+        int newXfromLastMove = (lastMove.charAt(3) - 96);
+        int newYfromLastMove = Character.getNumericValue(lastMove.charAt(4));
+        int oldYfromLastMove = Character.getNumericValue(lastMove.charAt(2));
+        if (lastMove.contains("P") && game.getRunningGame().getCoordinates().getNewX() == newXfromLastMove
+                && Math.abs(oldYfromLastMove - game.getRunningGame().getCoordinates().getNewY())
+                == Math.abs(newYfromLastMove - game.getRunningGame().getCoordinates().getNewY())) {
             for (Figure fff : game.getGameExtraParams().getFigures()) {
-                if (fff.getA() == aa1 && fff.getB() == bb1) {
+                if (fff.getOldX() == newXfromLastMove && fff.getOldY() == newYfromLastMove) {
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getMoveWhenRemovedFiguresList().add(game.getGameExtraParams().getCountMoves());
                         game.getGameExtraParams().getRemovedFigureList().add(fff);
-                        int add = Integer.parseInt(game.getPiece()[8 - bb1][aa1 - 1].getTag().toString());
+                        int add = Integer.parseInt(game.getPiece()[8 - newYfromLastMove][newXfromLastMove - 1].getTag().toString());
                         game.getGameExtraParams().getRemovedFiguresImageList().add(add);
                     }
                     game.getGameExtraParams().getFigures().remove(fff);
-                    game.getPiece()[8 - bb1][aa1 - 1].setImageDrawable(null);
-                    game.getPiece()[8 - bb1][aa1 - 1].setTag(null);
+                    game.getPiece()[8 - newYfromLastMove][newXfromLastMove - 1].setImageDrawable(null);
+                    game.getPiece()[8 - newYfromLastMove][newXfromLastMove - 1].setTag(null);
 
                     break;
                 }
             }
         } else {
             for (Figure fff : game.getGameExtraParams().getFigures()) {
-                if (fff.getA() == game.getRunningGame().getCoordinates().getA1() && fff.getB() == game.getRunningGame().getCoordinates().getB1()) {
+                if (fff.getOldX() == game.getRunningGame().getCoordinates().getNewX() && fff.getOldY() == game.getRunningGame().getCoordinates().getNewY()) {
                     if (game.getRunningGame().getPlayer1().getPlayerGameParams().isCancelableMoves()
                             || game.getRunningGame().getPlayer2().getPlayerGameParams().isCancelableMoves()) {
                         game.getGameExtraParams().getMoveWhenRemovedFiguresList().add(game.getGameExtraParams().getCountMoves());
                         game.getGameExtraParams().getRemovedFigureList().add(fff);
-                        int add = Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                                [game.getRunningGame().getCoordinates().getA1() - 1].getTag().toString());
+                        int add = Integer.parseInt(game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                                [game.getRunningGame().getCoordinates().getNewX() - 1].getTag().toString());
                         game.getGameExtraParams().getRemovedFiguresImageList().add(add);
                     }
                     game.getGameExtraParams().getFigures().remove(fff);
@@ -545,7 +548,7 @@ public class GameMove {
                 pawnToQueenExtra(newFigure, figureId);
             }
         } else {
-            f.overwriteCoordinates(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1());
+            f.overwriteCoordinates(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY());
             changeFigureImage();
             moveContinue(f);
         }
@@ -555,19 +558,19 @@ public class GameMove {
         Figure newFigure;
         switch (figureType) {
             case ROOK_ID:
-                newFigure = new Rook(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1()
+                newFigure = new Rook(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY()
                         , game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 break;
             case BISHOP_ID:
-                newFigure = new Bishop(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1()
+                newFigure = new Bishop(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY()
                         , game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 break;
             case KNIGHT_ID:
-                newFigure = new Knight(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1()
+                newFigure = new Knight(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY()
                         , game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 break;
             default:
-                newFigure = new Queen(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1()
+                newFigure = new Queen(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY()
                         , game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 break;
         }
@@ -606,7 +609,7 @@ public class GameMove {
         queen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Figure f = new Queen(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(),
+                Figure f = new Queen(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(),
                         game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 int figureId = getFigureId(f);
                 game.getRunningGame().getCoordinates().setFigureType(QUEEN_ID);
@@ -617,7 +620,7 @@ public class GameMove {
         rook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Figure f = new Rook(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(),
+                Figure f = new Rook(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(),
                         game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 int figureId = getFigureId(f);
                 game.getRunningGame().getCoordinates().setFigureType(ROOK_ID);
@@ -627,7 +630,7 @@ public class GameMove {
         bishop.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Figure f = new Bishop(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(),
+                Figure f = new Bishop(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(),
                         game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 int figureId = getFigureId(f);
                 game.getRunningGame().getCoordinates().setFigureType(BISHOP_ID);
@@ -637,7 +640,7 @@ public class GameMove {
         knight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Figure f = new Knight(game.getRunningGame().getCoordinates().getA1(), game.getRunningGame().getCoordinates().getB1(),
+                Figure f = new Knight(game.getRunningGame().getCoordinates().getNewX(), game.getRunningGame().getCoordinates().getNewY(),
                         game.getGameExtraParams().isColor(), game.getGameExtraParams(), game.getRunningGame().getMoveList());
                 int figureId = getFigureId(f);
                 game.getRunningGame().getCoordinates().setFigureType(KNIGHT_ID);
@@ -691,10 +694,10 @@ public class GameMove {
             game.getGameExtraParams().getMoveWhenAddedFiguresList().add(game.getGameExtraParams().getCountMoves());
             game.getGameExtraParams().getAddedFigureList().add(f);
         }
-        game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                [game.getRunningGame().getCoordinates().getA1() - 1].setTag(figureId);
-        game.getPiece()[8 - game.getRunningGame().getCoordinates().getB1()]
-                [game.getRunningGame().getCoordinates().getA1() - 1].setImageResource(figureId);
+        game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                [game.getRunningGame().getCoordinates().getNewX() - 1].setTag(figureId);
+        game.getPiece()[8 - game.getRunningGame().getCoordinates().getNewY()]
+                [game.getRunningGame().getCoordinates().getNewX() - 1].setImageResource(figureId);
         game.getGameMove().moveContinue(f);
         if (pawnToQueenDialog != null && pawnToQueenDialog.isShowing()) {
             pawnToQueenDialog.dismiss();

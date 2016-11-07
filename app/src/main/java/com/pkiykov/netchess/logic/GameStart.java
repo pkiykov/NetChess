@@ -455,7 +455,7 @@ public class GameStart {
             game.getPiece()[i][j].setImageDrawable(null);
             game.getPiece()[i][j].setTag(null);
             for (int n = 0; n < game.getGameExtraParams().getFigures().size(); n++) {
-                if (game.getGameExtraParams().getFigures().get(n).getA() - 1 == j && 8 - game.getGameExtraParams().getFigures().get(n).getB() == i) {
+                if (game.getGameExtraParams().getFigures().get(n).getOldX() - 1 == j && 8 - game.getGameExtraParams().getFigures().get(n).getOldY() == i) {
                     game.getGameExtraParams().getFigures().remove(n);
                 }
             }

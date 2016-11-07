@@ -266,7 +266,7 @@ public class GameDatabase {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 if (dataSnapshot.getValue() != null) {
                     Coordinates c = dataSnapshot.getValue(Coordinates.class);
-                    if (c.getA() != 0) {
+                    if (c.getOldX() != 0) {
                         if (!game.getRunningGame().getCoordinates().equals(c)) {
                             game.getGameMove().setMoveFromOpponent(true);
                             receivedFromOpponent.onCoordinatesUpdated(c);

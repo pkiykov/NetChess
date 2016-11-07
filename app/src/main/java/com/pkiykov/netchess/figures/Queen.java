@@ -5,36 +5,36 @@ import com.pkiykov.netchess.pojo.GameExtraParams;
 import java.util.ArrayList;
 
 public class Queen extends Figure {
-    public Queen(int a, int b, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
-        super(a, b, color, gameExtraParams, moveList);
+    public Queen(int oldX, int oldY, boolean color, GameExtraParams gameExtraParams, ArrayList<String> moveList) {
+        super(oldX, oldY, color, gameExtraParams, moveList);
     }
 
     @Override
-    public boolean move(int a1, int b1, boolean recursion) {
+    public boolean move(int newX, int newY, boolean recursion) {
         if (recursion) {
-            if (!checkIfLocationIsFree(a1, b1)) {
-                if (checkIfLocationIsOccupied(a1, b1, color)) {
+            if (!checkIfLocationIsFree(newX, newY)) {
+                if (checkIfLocationIsOccupied(newX, newY, color)) {
                     return false;
                 }
             }
         }
-        if (a1 != a && b1 != b) {
-            if (Math.abs(a - a1) != Math.abs(b - b1)) {
+        if (newX != oldX && newY != oldY) {
+            if (Math.abs(oldX - newX) != Math.abs(oldY - newY)) {
                 return false;
             }
         }
 
-        if (a1 == a ^ b1 == b) {
+        if (newX == oldX ^ newY == oldY) {
             int k = 1;
-            while (k != Math.max(Math.abs(a1 - a), Math.abs(b1 - b))) {
-                if (a1 == a) {
-                    if (checkIfLocationIsFree(a, Math.min(b1, b) + k)) {
+            while (k != Math.max(Math.abs(newX - oldX), Math.abs(newY - oldY))) {
+                if (newX == oldX) {
+                    if (checkIfLocationIsFree(oldX, Math.min(newY, oldY) + k)) {
                         k++;
                     } else {
                         return false;
                     }
                 } else {
-                    if (checkIfLocationIsFree(Math.min(a1, a) + k, b)) {
+                    if (checkIfLocationIsFree(Math.min(newX, oldX) + k, oldY)) {
                         k++;
                     } else {
                         return false;
@@ -43,21 +43,21 @@ public class Queen extends Figure {
             }
         } else {
             int k = 1;
-            while (k < Math.abs(a - a1)) {
-                if (b1 > b && a1 > a) {
-                    if (!checkIfLocationIsFree(a + k, b + k)) {
+            while (k < Math.abs(oldX - newX)) {
+                if (newY > oldY && newX > oldX) {
+                    if (!checkIfLocationIsFree(oldX + k, oldY + k)) {
                         return false;
                     }
-                } else if (b1 > b && a > a1) {
-                    if (!checkIfLocationIsFree(a - k, b + k)) {
+                } else if (newY > oldY && oldX > newX) {
+                    if (!checkIfLocationIsFree(oldX - k, oldY + k)) {
                         return false;
                     }
-                } else if (b > b1 && a > a1) {
-                    if (!checkIfLocationIsFree(a - k, b - k)) {
+                } else if (oldY > newY && oldX > newX) {
+                    if (!checkIfLocationIsFree(oldX - k, oldY - k)) {
                         return false;
                     }
-                } else if (b > b1 && a1 > a) {
-                    if (!checkIfLocationIsFree(a + k, b - k)) {
+                } else if (oldY > newY && newX > oldX) {
+                    if (!checkIfLocationIsFree(oldX + k, oldY - k)) {
                         return false;
                     }
                 }
@@ -65,7 +65,7 @@ public class Queen extends Figure {
             }
         }
 
-        return !recursion || moveIsLegalIfKingIsChecked(color, a1, b1);
+        return !recursion || moveIsLegalIfKingIsChecked(color, newX, newY);
     }
 
 }

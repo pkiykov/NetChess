@@ -149,14 +149,4 @@ public class FinishedGame implements Serializable {
         return (long) timestamp.get("timestamp");
     }
 
-
-    /*    public static final String CHECKMATE = "Checkmate";
-    public static final String RESIGN = "Player resigned";
-    public static final String TIME_OVER = "Time over";
-    public static final String DISCONNECT = "OnDisconnect";
-    public static final String DRAW_BY_AGREEMENT = "Draw by agreement";
-    public static final String INSUFFICIENT_MATERIAL = "Insufficient material";
-    public static final String STALEMATE = "Stalemate";
-    public static final String THREEFOLD_REPETITION = "Threefold repetition";
-    public static final String NO_PROGRESS = "50 moves no progress";*/
 }

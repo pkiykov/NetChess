@@ -293,7 +293,7 @@ public class GameActivity extends AppCompatActivity implements AdapterView.OnIte
         FragmentManager.BackStackEntry backEntry = getFragmentManager().getBackStackEntryAt(count - 2);
         String tag = backEntry.getName();
         Fragment f = getFragmentManager().findFragmentByTag(tag);
-        if (f != null && Game.class.getSimpleName().equals(f.getClass().getSimpleName()) && ((Game) f).getRunningGame() == null) {
+        if (f != null && f instanceof Game && ((Game) f).getRunningGame() == null) {
             ((Game) f).setBackstack(true);
         }
         removeSameFragment(count, tag);
