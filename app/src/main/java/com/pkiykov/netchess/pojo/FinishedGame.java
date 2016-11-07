@@ -9,6 +9,8 @@ import java.util.HashMap;
 
 public class FinishedGame implements Serializable {
 
+
+
     public static final String RESULT_DRAW = "1/2:1/2";
     public static final String RESULT_WIN = "1:0";
     public static final String RESULT_LOSE = "0:1";
@@ -18,6 +20,17 @@ public class FinishedGame implements Serializable {
     public static final int LOST_GAMES = 3;
     public static final int DRAWN_GAMES = 4;
     public static final int ALL_GAMES = 5;
+
+    public static final int END_GAME_NO_PROGRESS = 100;
+    public static final int REASON_CHECKMATE = 0;
+    public static final int REASON_RESIGN = 1;
+    public static final int REASON_TIME_OVER = 2;
+    public static final int REASON_DISCONNECT = 3;
+    public static final int REASON_DRAW_BY_AGREEMENT = 4;
+    public static final int REASON_INSUFFICIENT_MATERIAL = 5;
+    public static final int REASON_STALEMATE = 6;
+    public static final int REASON_THREEFOLD_REPETITION = 7;
+    public static final int REASON_NO_PROGRESS = 8;
 
     private Player player1, player2;
     private ArrayList<String> moveList;
@@ -50,40 +63,6 @@ public class FinishedGame implements Serializable {
         return timestampNow;
     }
 
-   /* public String getStringReasonByInt(int reason) {
-        String s = "";
-        switch (reason) {
-            case 0:
-                s = CHECKMATE;
-                break;
-            case 1:
-                s = RESIGN;
-                break;
-            case 2:
-                s = TIME_OVER;
-                break;
-            case 3:
-                s = DISCONNECT;
-                break;
-            case 4:
-                s = DRAW_BY_AGREEMENT;
-                break;
-            case 5:
-                s = INSUFFICIENT_MATERIAL;
-                break;
-            case 6:
-                s = STALEMATE;
-                break;
-            case 7:
-                s = THREEFOLD_REPETITION;
-                break;
-            case 8:
-                s = NO_PROGRESS;
-                break;
-        }
-        return s;
-    }
-*/
     public Player getPlayer1() {
         return player1;
     }
@@ -109,7 +88,7 @@ public class FinishedGame implements Serializable {
     }
 
     public void setTimestamp(Long timestamp) {
-        this.timestamp = new HashMap<String, Object>();
+        this.timestamp = new HashMap<>();
         this.timestamp.put("timestamp", timestamp);
     }
 

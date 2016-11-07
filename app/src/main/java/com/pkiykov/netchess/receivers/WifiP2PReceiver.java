@@ -16,6 +16,8 @@ import com.pkiykov.netchess.fragments.Game;
 import com.pkiykov.netchess.fragments.PeerToPeerDevicesList;
 import com.pkiykov.netchess.pojo.RunningGame;
 
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
+
 public class WifiP2PReceiver extends BroadcastReceiver {
 
     private WifiP2pManager wifiP2pManager;
@@ -44,7 +46,7 @@ public class WifiP2PReceiver extends BroadcastReceiver {
                             gameFragment.getPeer2Peer().disconnect(false);
                             ((GameActivity) activity).fragmentTransaction(new Auth());
                         } else if (gameFragment.getRunningGame() != null) {
-                            gameFragment.getGameExtraParams().setReason(3);
+                            gameFragment.getGameExtraParams().setReason(REASON_DISCONNECT);
                             gameFragment.getRunningGame().setStatus(gameFragment.getRunningGame().isThisPlayerPlaysWhite()
                                     ? RunningGame.PLAYER_1_DISCONNECTED : RunningGame.PLAYER_2_DISCONNECTED);
                             gameFragment.getGameEnd().cancelDialogs();
@@ -79,7 +81,7 @@ public class WifiP2PReceiver extends BroadcastReceiver {
                             } else {
                                 gameFragment.getRunningGame().setStatus(RunningGame.PLAYER_1_DISCONNECTED);
                             }
-                            gameFragment.getGameExtraParams().setReason(3);
+                            gameFragment.getGameExtraParams().setReason(REASON_DISCONNECT);
                             gameFragment.getGameEnd().cancelDialogs();
                             gameFragment.getGameEnd().recordResult();
                         }

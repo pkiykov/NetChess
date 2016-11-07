@@ -33,6 +33,7 @@ import com.squareup.picasso.Picasso;
 import java.util.List;
 
 import static com.pkiykov.netchess.logic.GameEnd.getPlayerMovesCount;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
 
 public class GameDatabase {
     private boolean opponentIsConnected;
@@ -88,7 +89,7 @@ public class GameDatabase {
 
     private void failToWriteToDatabase(String message) {
         Toast.makeText(game.getActivity(), message, Toast.LENGTH_SHORT).show();
-        game.getGameExtraParams().setReason(3);
+        game.getGameExtraParams().setReason(REASON_DISCONNECT);
         if (game.getRunningGame().isThisPlayerPlaysWhite()) {
             game.getRunningGame().setStatus(RunningGame.PLAYER_2_WIN);
         } else {

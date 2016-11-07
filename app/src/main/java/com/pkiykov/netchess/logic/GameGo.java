@@ -35,7 +35,9 @@ import static com.pkiykov.netchess.fragments.Game.ONLINE_GAME;
 import static com.pkiykov.netchess.fragments.Game.RESIGN;
 import static com.pkiykov.netchess.logic.GameTime.NO_TIME_CONTROL;
 import static com.pkiykov.netchess.logic.GameTime.stopTimers;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_RESIGN;
 import static com.pkiykov.netchess.pojo.RunningGame.CHAT_LOGS;
+import static com.pkiykov.netchess.pojo.RunningGame.DRAW_BY_AGREEMENT;
 import static com.pkiykov.netchess.pojo.RunningGame.GAME_STATUS;
 import static com.pkiykov.netchess.pojo.RunningGame.ON_PAUSED;
 
@@ -120,7 +122,7 @@ public class GameGo {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         game.getRunningGame().setStatus(RunningGame.DRAW_BY_AGREEMENT);
-                        game.getGameExtraParams().setReason(4);
+                        game.getGameExtraParams().setReason(DRAW_BY_AGREEMENT);
                         game.getGameEnd().recordResult();
                         dialogInterface.dismiss();
                     }
@@ -408,7 +410,7 @@ public class GameGo {
         } else {
             game.getRunningGame().setStatus(RunningGame.PLAYER_1_WIN);
         }
-        game.getGameExtraParams().setReason(1);
+        game.getGameExtraParams().setReason(REASON_RESIGN);
         if (game.getGameType() == ONLINE_GAME) {
             game.getGameDatabase().removeDatabaseListenersForCurrentGame();
         }else if(game.getGameType() == LAN_GAME){

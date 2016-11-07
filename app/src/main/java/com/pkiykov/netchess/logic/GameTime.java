@@ -17,10 +17,11 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 import static com.pkiykov.netchess.logic.GameEnd.getPlayerMovesCount;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_TIME_OVER;
 import static com.pkiykov.netchess.pojo.Player.TIMESTAMP;
 
 public class GameTime {
-    public static final int NO_TIME_CONTROL = 0;
+    static final int NO_TIME_CONTROL = 0;
     private static final int MINUTES_PER_GAME = 1;
     private static final int SECONDS_PER_MOVE = 2;
     private static final int FISHER_TIMING = 3;
@@ -59,6 +60,7 @@ public class GameTime {
         } catch (ParseException e) {
             e.printStackTrace();
         }
+        assert d != null;
         return d.getTime() + 10800000;
     }
 
@@ -116,6 +118,7 @@ public class GameTime {
                 game.getTimer1().setText(game.getString(R.string.loser));
                 game.getTimer2().setText(game.getString(R.string.winner));
                 game.getRunningGame().setStatus(RunningGame.PLAYER_2_WIN);
+                game.getGameExtraParams().setReason(REASON_TIME_OVER);
                 game.getGameEnd().recordResult();
             }
         }.start());
@@ -142,6 +145,7 @@ public class GameTime {
                 game.getTimer1().setText(game.getString(R.string.loser));
                 game.getTimer2().setText(game.getString(R.string.winner));
                 game.getRunningGame().setStatus(RunningGame.PLAYER_2_WIN);
+                game.getGameExtraParams().setReason(REASON_TIME_OVER);
                 game.getGameEnd().recordResult();
             }
         }.start());
@@ -158,6 +162,7 @@ public class GameTime {
                 game.getTimer2().setText(game.getString(R.string.loser));
                 game.getTimer1().setText(game.getString(R.string.winner));
                 game.getRunningGame().setStatus(RunningGame.PLAYER_1_WIN);
+                game.getGameExtraParams().setReason(REASON_TIME_OVER);
                 game.getGameEnd().recordResult();
             }
         }.start());
@@ -176,6 +181,7 @@ public class GameTime {
                 game.getTimer2().setText(game.getString(R.string.loser));
                 game.getTimer1().setText(game.getString(R.string.winner));
                 game.getRunningGame().setStatus(RunningGame.PLAYER_1_WIN);
+                game.getGameExtraParams().setReason(REASON_TIME_OVER);
                 game.getGameEnd().recordResult();
             }
         }.start());

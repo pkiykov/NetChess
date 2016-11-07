@@ -26,9 +26,18 @@ import static com.pkiykov.netchess.fragments.Game.LAN_GAME;
 import static com.pkiykov.netchess.fragments.Game.ONE_DEVICE_GAME;
 import static com.pkiykov.netchess.fragments.Game.ONLINE_GAME;
 import static com.pkiykov.netchess.logic.GameTime.stopTimers;
+import static com.pkiykov.netchess.pojo.FinishedGame.END_GAME_NO_PROGRESS;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_CHECKMATE;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_INSUFFICIENT_MATERIAL;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_NO_PROGRESS;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_RESIGN;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_STALEMATE;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_THREEFOLD_REPETITION;
 import static com.pkiykov.netchess.pojo.RunningGame.GAME_STATUS;
 import static com.pkiykov.netchess.pojo.RunningGame.PLAYER_1_WIN;
 import static com.pkiykov.netchess.pojo.RunningGame.PLAYER_2_WIN;
+import static com.pkiykov.netchess.pojo.RunningGame.THREEFOLD_REPETITION;
 
 public class GameEnd {
 
@@ -44,7 +53,7 @@ public class GameEnd {
     public void onOpponentDisconnect() {
         cancelDialogs();
         if (game.getRunningGame().getMoveList().size() > 0) {
-            game.getGameExtraParams().setReason(3);
+            game.getGameExtraParams().setReason(REASON_DISCONNECT);
             if (game.getRunningGame().isThisPlayerPlaysWhite()) {
                 game.getRunningGame().setStatus(RunningGame.PLAYER_2_DISCONNECTED);
             } else {
@@ -243,12 +252,12 @@ public class GameEnd {
                 game.getRunningGame().setStatus(PLAYER_2_WIN);
             } else {
                 game.getRunningGame().setStatus(RunningGame.STALEMATE);
-                game.getGameExtraParams().setReason(6);
+                game.getGameExtraParams().setReason(REASON_STALEMATE);
             }
             return true;
         } else {
-            if (game.getGameExtraParams().getCountNoProgressMoves() == 100) {
-                game.getGameExtraParams().setReason(8);
+            if (game.getGameExtraParams().getCountNoProgressMoves() == END_GAME_NO_PROGRESS) {
+                game.getGameExtraParams().setReason(REASON_NO_PROGRESS);
                 return true;
             }
             int countBlackFigures = 0;
@@ -272,12 +281,12 @@ public class GameEnd {
             if (((countBlackFigures == 2 && isBlackLightFigure) ^ (countBlackFigures == 1))
                     && ((countWhiteFigures == 2 && isWhiteLightFigure) ^ (countWhiteFigures == 1))) {
                 game.getRunningGame().setStatus(RunningGame.INSUFFICIENT_MATERIAL);
-                game.getGameExtraParams().setReason(5);
+                game.getGameExtraParams().setReason(REASON_INSUFFICIENT_MATERIAL);
                 return true;
             }
             if (game.getRunningGame().getMoveList().size() > 5) {
                 if (threeFoldRepetition()) {
-                    game.getGameExtraParams().setReason(7);
+                    game.getGameExtraParams().setReason(REASON_THREEFOLD_REPETITION);
                     return true;
                 }
             }
@@ -288,7 +297,7 @@ public class GameEnd {
     public void recordResult() {
         stopTimers(game.getCountDownTimer1(), game.getCountDownTimer2());
         String message = "";
-        if (game.getGameExtraParams().getReason() == 3) {
+        if (game.getGameExtraParams().getReason() == REASON_DISCONNECT) {
             if (game.getRunningGame().getStatus() == RunningGame.PLAYER_2_DISCONNECTED) {
                 message = game.getString(R.string.opponent_disconnected) + " " + game.getString(R.string.white_wins);
                 game.getTimer2().setText(game.getString(R.string.loser));
@@ -302,7 +311,7 @@ public class GameEnd {
             }
         } else if (game.getRunningGame().getStatus() == PLAYER_1_WIN ^ game.getRunningGame().getStatus()
                 == PLAYER_2_WIN) {
-            if (game.getGameExtraParams().getReason() != 1) {
+            if (game.getGameExtraParams().getReason() != REASON_RESIGN) {
                 if (game.getGameExtraParams().isColor()) {
                     message = game.getString(R.string.black_wins);
                     game.getTimer1().setText(game.getString(R.string.loser));
@@ -330,7 +339,7 @@ public class GameEnd {
         } else {
             game.getTimer1().setText(game.getString(R.string.draw));
             game.getTimer2().setText(game.getString(R.string.draw));
-            if (game.getGameExtraParams().getCountNoProgressMoves() == 100) {
+            if (game.getGameExtraParams().getCountNoProgressMoves() == REASON_THREEFOLD_REPETITION) {
                 message = game.getString(R.string.no_progress_draw);
             } else if (game.getRunningGame().getStatus() == RunningGame.THREEFOLD_REPETITION) {
                 message = game.getString(R.string.threefold_draw);

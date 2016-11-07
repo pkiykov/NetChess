@@ -19,6 +19,9 @@ import static com.pkiykov.netchess.fragments.Game.ONLINE_GAME;
 import static com.pkiykov.netchess.logic.GameTime.HOURGLASS;
 import static com.pkiykov.netchess.logic.GameTime.stopTimers;
 import static com.pkiykov.netchess.logic.Peer2Peer.USER_INFO;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DISCONNECT;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_DRAW_BY_AGREEMENT;
+import static com.pkiykov.netchess.pojo.FinishedGame.REASON_RESIGN;
 import static com.pkiykov.netchess.pojo.Player.NAME;
 import static com.pkiykov.netchess.pojo.Player.PLAYER_ID;
 import static com.pkiykov.netchess.pojo.Player.PLAYER_RATING;
@@ -60,7 +63,7 @@ public class ReceivedFromOpponent {
                         }
                     }).start();
                 } else if (game.getRunningGame().getStatus() == RunningGame.DRAW_BY_AGREEMENT && status == DRAW_BY_AGREEMENT) {
-                    game.getGameExtraParams().setReason(3);
+                    game.getGameExtraParams().setReason(REASON_DRAW_BY_AGREEMENT);
                     game.getGameEnd().recordResult();
                     return;
                 }
@@ -110,7 +113,7 @@ public class ReceivedFromOpponent {
                     } else {
                         message = game.getString(R.string.white_resigned);
                     }
-                    game.getGameExtraParams().setReason(1);
+                    game.getGameExtraParams().setReason(REASON_RESIGN);
                     game.getGameEnd().recordResult();
                 }
             }

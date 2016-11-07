@@ -22,7 +22,7 @@ public class OpponentDisconnectReceiver extends BroadcastReceiver {
             if (!GameActivity.isActivityVisible()) {
                 String message = context.getString(R.string.opponent_disconnected);
                 String title = context.getString(R.string.game_over);
-                ((GameActivity) game.getActivity()).createNotification(context, message, title, 1234);
+                ((GameActivity) game.getActivity()).createNotification(context, message, title, 1);
             }
             game.getGameEnd().onOpponentDisconnect();
         }
