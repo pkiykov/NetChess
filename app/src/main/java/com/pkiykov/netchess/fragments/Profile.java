@@ -32,7 +32,7 @@ import android.widget.Toast;
 
 import com.pkiykov.netchess.GameActivity;
 import com.pkiykov.netchess.R;
-import com.pkiykov.netchess.others.FirebaseHelper;
+import com.pkiykov.netchess.util.FirebaseHelper;
 import com.pkiykov.netchess.pojo.Player;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;

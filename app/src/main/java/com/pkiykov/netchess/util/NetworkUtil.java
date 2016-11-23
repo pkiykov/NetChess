@@ -1,4 +1,4 @@
-package com.pkiykov.netchess.others;
+package com.pkiykov.netchess.util;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

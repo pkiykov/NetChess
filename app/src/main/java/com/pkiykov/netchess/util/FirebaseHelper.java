@@ -1,4 +1,4 @@
-package com.pkiykov.netchess.others;
+package com.pkiykov.netchess.util;
 
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseReference;

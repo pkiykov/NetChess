@@ -18,10 +18,10 @@ import com.pkiykov.netchess.fragments.RankedGameSettings;
 import com.pkiykov.netchess.fragments.Registration;
 import com.pkiykov.netchess.async_tasks.OnDisconnect;
 import com.pkiykov.netchess.fragments.UnrankedGameSettings;
-import com.pkiykov.netchess.others.NetworkUtil;
+import com.pkiykov.netchess.util.NetworkUtil;
 
-import static com.pkiykov.netchess.others.NetworkUtil.TYPE_WIFI;
-import static com.pkiykov.netchess.others.NetworkUtil.getNetworkStatusNotConnected;
+import static com.pkiykov.netchess.util.NetworkUtil.TYPE_WIFI;
+import static com.pkiykov.netchess.util.NetworkUtil.getNetworkStatusNotConnected;
 
 public class ConnectionStateChangeReceiver extends BroadcastReceiver {
     private GameActivity activity;

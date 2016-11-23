@@ -5,7 +5,7 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import com.pkiykov.netchess.GameActivity;
-import com.pkiykov.netchess.others.ConnectionPeer2Peer;
+import com.pkiykov.netchess.logic.ConnectionPeer2Peer;
 
 import java.io.IOException;
 import java.net.InetAddress;

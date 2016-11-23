@@ -1,4 +1,4 @@
-package com.pkiykov.netchess.others;
+package com.pkiykov.netchess;
 
 import android.app.Application;
 

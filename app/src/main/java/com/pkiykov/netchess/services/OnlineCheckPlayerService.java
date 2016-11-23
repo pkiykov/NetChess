@@ -9,7 +9,7 @@ import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
 
-import com.pkiykov.netchess.others.FirebaseHelper;
+import com.pkiykov.netchess.util.FirebaseHelper;
 import com.pkiykov.netchess.pojo.Player;
 import com.pkiykov.netchess.pojo.RunningGame;
 import com.pkiykov.netchess.receivers.OpponentDisconnectReceiver;

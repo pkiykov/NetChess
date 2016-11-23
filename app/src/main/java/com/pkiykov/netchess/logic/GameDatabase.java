@@ -20,7 +20,7 @@ import com.google.firebase.storage.StorageReference;
 import com.pkiykov.netchess.GameActivity;
 import com.pkiykov.netchess.R;
 import com.pkiykov.netchess.fragments.Game;
-import com.pkiykov.netchess.others.FirebaseHelper;
+import com.pkiykov.netchess.util.FirebaseHelper;
 import com.pkiykov.netchess.pojo.Coordinates;
 import com.pkiykov.netchess.pojo.FinishedGame;
 import com.pkiykov.netchess.pojo.Player;

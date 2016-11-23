@@ -1,5 +1,5 @@
 
-package com.pkiykov.netchess.others;
+package com.pkiykov.netchess.logic;
 
 import android.app.Activity;
 import android.app.Fragment;

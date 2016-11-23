@@ -23,7 +23,7 @@ import android.widget.Toast;
 
 import com.pkiykov.netchess.GameActivity;
 import com.pkiykov.netchess.R;
-import com.pkiykov.netchess.others.NetworkUtil;
+import com.pkiykov.netchess.util.NetworkUtil;
 import com.pkiykov.netchess.pojo.Player;
 import com.pkiykov.netchess.pojo.PlayerGameParams;
 import com.pkiykov.netchess.pojo.RunningGame;
@@ -31,7 +31,7 @@ import com.pkiykov.netchess.pojo.RunningGame;
 import static com.pkiykov.netchess.fragments.Game.GAME_TYPE;
 import static com.pkiykov.netchess.fragments.Game.LAN_GAME;
 import static com.pkiykov.netchess.fragments.Game.ONE_DEVICE_GAME;
-import static com.pkiykov.netchess.others.NetworkUtil.TYPE_WIFI;
+import static com.pkiykov.netchess.util.NetworkUtil.TYPE_WIFI;
 
 public class UnrankedGameSettings extends Fragment {
 
