@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.pkiykov.netchess.R;
-import com.pkiykov.netchess.pojo.Player;
-import com.pkiykov.netchess.logic.GameTime;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
+import com.pkiykov.netchess.R;
+import com.pkiykov.netchess.logic.GameTime;
+import com.pkiykov.netchess.pojo.Player;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -26,13 +26,7 @@ public class PlayersListAdapter extends RecyclerView.Adapter<PlayersListAdapter.
     private Listener listener;
     private ArrayList<Player> list;
     private RelativeLayout layout;
-    private TextView position;
-    private TextView playerName;
-    private TextView playerRating;
-    private TextView extraTextView1;
-    private TextView extraTextView2;
     private Context context;
-    private ImageView avatar;
     private boolean isRankList;
 
     public PlayersListAdapter(ArrayList<Player> list, Context context, boolean isRankList) {
@@ -55,27 +49,27 @@ public class PlayersListAdapter extends RecyclerView.Adapter<PlayersListAdapter.
             String rating = context.getString(R.string.rating) + String.valueOf(list.get(position).getRating());
             String extraTextView1;
             String extraTextView2;
-            if(isRankList){
-                extraTextView1 = context.getString(R.string.age)+list.get(position).getAge();
-                int total = list.get(position).getWins()+list.get(position).getLosses()+list.get(position).getDraws();
-                extraTextView2 = context.getString(R.string.total)+total;
-            }else {
+            if (isRankList) {
+                extraTextView1 = context.getString(R.string.age) + list.get(position).getAge();
+                int total = list.get(position).getWins() + list.get(position).getLosses() + list.get(position).getDraws();
+                extraTextView2 = context.getString(R.string.total) + total;
+            } else {
                 extraTextView1 = context.getString(R.string.plays)
-                        +( list.get(position).isColor()? context.getString(R.string.white): context.getString(R.string.black)) ;
+                        + (list.get(position).isColor() ? context.getString(R.string.white) : context.getString(R.string.black));
                 extraTextView2 = GameTime.getTimeInfo(context, list.get(position).getPlayerGameParams().getTimeControl(),
                         list.get(position).getPlayerGameParams().getTimePicker1(),
                         list.get(position).getPlayerGameParams().getTimePicker2());
             }
-            loadPhoto(id, avatar);
-            playerName.setText(name);
-            playerRating.setText(rating);
-            this.extraTextView1.setText(extraTextView1);
-            this.extraTextView2.setText(extraTextView2);
+            loadPhoto(id, holder.avatar);
+            holder.playerName.setText(name);
+            holder.playerRating.setText(rating);
+            holder.extraTextView1.setText(extraTextView1);
+            holder.extraTextView2.setText(extraTextView2);
 
-            if(list.get(position).getRank() == 0){
-                this.position.setText(String.valueOf(position + 1));
-            }else{
-                this.position.setText(String.valueOf(list.get(position).getRank()));
+            if (list.get(position).getRank() == 0) {
+                holder.position.setText(String.valueOf(position + 1));
+            } else {
+                holder.position.setText(String.valueOf(list.get(position).getRank()));
             }
 
             final int p = position;
@@ -114,6 +108,12 @@ public class PlayersListAdapter extends RecyclerView.Adapter<PlayersListAdapter.
     }
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView playerName;
+        private TextView playerRating;
+        private TextView extraTextView1;
+        private TextView extraTextView2;
+        private ImageView avatar;
+        private TextView position;
 
         ViewHolder(View itemView) {
             super(itemView);

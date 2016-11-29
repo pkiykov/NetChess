@@ -20,10 +20,7 @@ public class FinishedGamesListAdapter extends RecyclerView.Adapter<FinishedGames
     private FinishedGamesListAdapter.Listener listener;
     private ArrayList<FinishedGame> list;
     private LinearLayout layout;
-    private TextView whitePlayer;
-    private TextView blackPlayer;
-    private TextView gameDate;
-    private TextView gameResult;
+
     private Context context;
     private SimpleDateFormat sfd;
 
@@ -49,10 +46,10 @@ public class FinishedGamesListAdapter extends RecyclerView.Adapter<FinishedGames
             String date = sfd.format(new Date(list.get(position).getTimestampCreatedLong()));
             String result = list.get(position).getResult();
 
-            whitePlayer.setText(white);
-            blackPlayer.setText(black);
-            gameDate.setText(date);
-            gameResult.setText(result);
+            holder.whitePlayer.setText(white);
+            holder.blackPlayer.setText(black);
+            holder.gameDate.setText(date);
+            holder.gameResult.setText(result);
 
             final int p = position;
             layout.setOnClickListener(new View.OnClickListener() {
@@ -72,13 +69,16 @@ public class FinishedGamesListAdapter extends RecyclerView.Adapter<FinishedGames
 
 
     class ViewHolder extends RecyclerView.ViewHolder {
+        private TextView whitePlayer;
+        private TextView blackPlayer;
+        private TextView gameDate;
+        private TextView gameResult;
 
         ViewHolder(View itemView) {
             super(itemView);
 
             whitePlayer = (TextView) layout.findViewById(R.id.white_player_tv);
             blackPlayer = (TextView) layout.findViewById(R.id.black_player_tv);
-
             gameDate = (TextView) layout.findViewById(R.id.game_date_tv);
             gameResult = (TextView) layout.findViewById(R.id.game_result_tv);
         }
